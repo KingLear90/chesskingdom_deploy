@@ -15,10 +15,6 @@ import { GetUsers, ProtectedRoute } from './components';
 
 export const router = createBrowserRouter([
   {
-    path: '*',
-    element: <NotFound />,
-  },
-  {
     path: '/',
     element: <Home />,
   },
@@ -60,6 +56,10 @@ export const router = createBrowserRouter([
     <ProtectedRoute allowedProfiles={['admin']}>
       <GetUsers />
     </ProtectedRoute>)
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   }
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
