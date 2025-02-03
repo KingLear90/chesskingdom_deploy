@@ -1,0 +1,123 @@
+.formLayout {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8));
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(78, 13, 218, 0.15);
+    width: 90%;
+    max-width: 480px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .formTitle {
+    background: linear-gradient(45deg, #6366f1, #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+  
+  .alertForm {
+    color: #6366f1;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+.registerInput {
+    max-width: 85%;
+    padding: 5px;
+    margin: 0 auto;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.registerInput:focus {
+    outline: none;
+    border-color: #a855f7;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+    max-width: 88%; 
+}
+  
+  .error {
+    color: #ef4444;
+    font-size: 0.85rem;
+    margin-top: 4px;
+  }
+  
+  .registerBtn {
+    background: linear-gradient(45deg, #6366f1, #a855f7) !important;
+    color: white !important;
+    border: none !important;
+    transition: transform 0.3s ease !important;
+  }
+  
+  .registerBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4) !important;
+  }
+  
+  .thanksMsg {
+    background: linear-gradient(45deg, #22c55e, #10b981);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .formLayout {
+      width: 95%;
+      padding: 1.5rem;
+    }
+  
+    .formTitle {
+      font-size: 1.5rem;
+    }
+  
+    .registerInput {
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .formLayout {
+      width: 100%;
+      padding: 1rem;
+      margin: 1rem auto;
+    }
+  
+    .registerBtn {
+      min-width: 160px !important;
+    }
+  }
+  
+  /* Animación de entrada */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .formLayout {
+    animation: fadeIn 0.5s ease-out;
+  }

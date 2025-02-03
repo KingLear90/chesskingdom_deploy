@@ -1,0 +1,64 @@
+.formLayout {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    margin: 4rem auto;
+  }
+  
+.formTitle {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+  
+.loginInput,
+.registerInput {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;;
+    border: 2px solid #2b2828;
+    border-radius: 10px;
+    transition: border-color 0.3s ease;
+}
+  
+.loginInput:focus,
+.registerInput:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.btn {
+    width: 100%;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+  
+.btn:hover {
+    transform: translateY(-2px);
+}
+  
+.thanksMsg {
+    text-align: center;
+    color: #28a745;
+    margin: 1rem 0;
+}
+
+@media (min-width: 480px) {
+    .formTitle {
+        font-size: 1.8rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .formLayout {
+        width: 50%;
+    }
+}

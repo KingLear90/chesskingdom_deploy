@@ -1,0 +1,117 @@
+.productsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+  
+.product-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    background: #dbcdd3;
+    border: 2px solid #ddd;
+    width: 21em;
+    min-height: fit-content;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.button-group {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 12em;  
+    right: 1em;
+    display: flex;
+    row-gap: 8px;
+
+}
+.product-card .MuiIconButton-root {
+    color: #079c34;
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-card .MuiIconButton-root:hover {
+  color: red;
+  background-color: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+ 
+}
+
+.product-card img {
+    max-width: 200px;
+    height: 200px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.product-card .price {
+    font-weight: bold;
+    color: #2c5282;
+    margin-top: 10px;
+}
+  
+.product-card .description {
+    color: #343a44;
+    margin: 3px 0;
+}
+  
+.product-card .category {
+  margin-top: 5px;
+    color: #4a5362;
+    font-style: italic;
+}
+
+@media screen and (max-width: 768px) {
+    .button-group {
+        top: 10em;
+        right: 5px;
+        gap: 4px;
+    }
+    .product-card {
+        width: 20rem;
+        height: 22rem;
+    }
+    
+    .product-card img {
+        max-width: 150px;
+        height: 150px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .button-group {
+        transform: scale(0.9);
+    }
+    .product-card {
+        width: 15rem;
+        height: 20rem;
+        padding: 10px;
+    }
+    
+    .product-card img {
+        max-width: 120px;
+        height: 120px;
+    }
+    
+    .product-card .description {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .productsContainer {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .product-card {
+        margin: 10px;
+    }
+}

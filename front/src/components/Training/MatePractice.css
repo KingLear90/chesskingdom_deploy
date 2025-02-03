@@ -1,0 +1,36 @@
+.mate-practice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#chessboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.next-button {
+    margin: 20px;
+    width: 12em;
+    padding: 8px;
+    background-color: #ff0044;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.next-button:hover {
+    background-color: #ff0025;
+    width: 12.5em;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: 0.4s;
+}

@@ -1,0 +1,52 @@
+.navbar {
+    background: linear-gradient(180deg, #519bfb, #6294d1c9);  
+    display: flex;
+    min-height: 10vh;
+    align-items: center;
+    width: 100%;
+}
+
+.navbar-brand {
+    font-size: 1.9rem;
+    font-family: "Macondo Swash Caps", serif;
+    margin-left: 0.5em;
+    color: black;
+}
+
+.navbar-brand:hover {
+    color: white;
+    text-shadow: 0 0 7px whitesmoke;
+}
+
+.nav-link {
+    display: flex;
+    margin-right: 2.8em;
+    color: #ffffff;
+    justify-content: space-evenly;
+}
+
+.nav-link-active {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 0.8em;
+    color: black;
+}
+
+.navbar-toggler {
+    margin-right: 0.8em;
+}
+
+.navbar-toggler-icon {
+    display: inline-block;
+    width: 1.3em;
+    height: 1.3em;
+    vertical-align: middle;
+    background-image: var(--bs-navbar-toggler-icon-bg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+ul a {
+    color: #ffffff
+}

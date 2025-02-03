@@ -1,0 +1,7 @@
+.champions {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.campeon-container {
+  position: relative;
+}

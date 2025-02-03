@@ -1,0 +1,34 @@
+.notFound {
+    background: rgb(232, 239, 239);
+    min-height: 100vh;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.notFoundMsg {
+    padding-top: 3%;
+}
+
+#redirect {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.redirectMsg {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.logo404{
+    margin: 2% 3%;
+    width:100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 768px) {
+    .logo404 {
+       width: 80%;
+    }
+}
+

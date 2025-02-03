@@ -1,0 +1,162 @@
+#learn-info{
+    font-weight: 400;
+    font-size: 1em;
+    margin: 1.5em auto;
+    line-height: 1.5em;
+    align-items: center;
+}
+
+.engineFeature {
+    margin: 0.8em;
+}
+
+.instructions {
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    flex-direction: column;
+    width: 19em;
+    text-align: left;
+    margin-right: auto;
+    margin-left: auto;
+    row-gap: 0.5em;
+}
+
+.engine-datacontainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    row-gap: 0.2em;
+}
+
+.code {
+    font-weight: 500;
+}
+
+.fen {
+    text-align: center;
+    width: 18em;
+}
+
+.engine-btn {
+    border-radius: 10px;
+    font-weight: 500;
+    background: rgb(13, 129, 171);
+    color: white;
+    padding: 0.3em 0.7em;
+    margin: 0.8em;
+}
+
+.engine-btn:hover {
+    background: rgb(28, 156, 203);
+}
+
+.calculating {
+    color:rgb(42, 19, 117);
+    font-weight: 500;
+}
+
+.textAnalysis {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    color: rgb(42, 19, 117);
+    padding: 0.3em 0.7em;
+    margin: 0.8em;
+    border: 1px solid rgb(42, 19, 117);
+}
+
+.interpretation { 
+    margin-top: 1.3em;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.list-interpretation li {
+    margin-top: 1em;
+    text-align: left;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.unavailable { 
+    color: #e70c0cf2;
+    font-weight: 500;
+    font-size: 2px;
+    font-family: 'Nunito', sans-serif;
+    margin-top: 0.5em;
+    animation-name: change-size;
+    animation-duration: 2s;
+    animation-iteration-count: 2;
+}
+@keyframes change-size {
+    0% {font-size: 14px}
+    50% {font-size: 16px}
+    100% {font-size: 14px}
+}
+
+.interButton {
+    border: none;
+}
+
+.arrowDown{
+    animation: bounce 1.5s infinite;
+    transform: rotate(30deg)
+}
+
+@keyframes bounce {
+    0%, 40%, 50%, 80%, 100% {transform: translateY();}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+.arrowDown:hover {
+    cursor: pointer;
+}   
+
+@media all and (min-width: 480px) {
+    #learn-info{
+        font-size: 1.1em;
+    }
+    .instructions {
+        width: 30em;
+    }
+    #learn-info {
+        margin: 1.5em 0.7em;
+    }
+    .fen {
+        width: 25em;
+    }
+}
+
+@media all and (min-width: 1024px) {
+    #learn-info{
+        font-size: 1.3em;
+    }
+    .instructions {
+        width: 45em;
+    }
+    .textAnalysis {
+        width: 40em;
+        margin-left:auto;
+        margin-right: auto;
+    }
+    .interpretation { 
+        width: 77%;
+    }
+
+    .fen {
+        width: 38em;
+    }
+    .list-interpretation li {
+        width: 67%;
+    }
+}
