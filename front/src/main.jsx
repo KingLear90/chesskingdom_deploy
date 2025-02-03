@@ -61,7 +61,9 @@ export const router = createBrowserRouter([
     path: '*',
     element: <NotFound />,
   }
-]);
+], {
+  basename: '/'
+});
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
