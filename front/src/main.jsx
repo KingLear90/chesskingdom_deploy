@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { StrictMode } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home/Home';
 import Learn from './Pages/Learn/Learn';
 import Gallery from './Pages/Gallery/Gallery';
@@ -13,60 +13,22 @@ import Products from './Pages/Products/Products';
 import Practice from './Pages/Practice/Practice';
 import { GetUsers, ProtectedRoute } from './components';
 
-export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Home />,
-  },
-  {
-      path: '/home',
-      element: <Home />,
-  },
-  {
-      path: '/learn',
-      element: <Learn />
-  },
-  {
-    path: '/gallery',
-    element: <Gallery />,
-  },
-  {
-    path: '/contact',
-    element: <Contact />
-  },
-  {
-    path: '/signup',
-    element: <SignUp />
-  },
-  {
-    path: '/signin',
-    element: <SignIn />
-  },
-  {
-    path: '/products',
-    element: <Products />
-  },
-  {
-    path: '/practice',
-    element: <Practice />
-  },
-  {
-    path: '/users',
-    element: (
-    <ProtectedRoute allowedProfiles={['admin']}>
-      <GetUsers />
-    </ProtectedRoute>)
-  },
-  {
-    path: '*',
-    element: <NotFound />,
-  }
-], {
-  basename: '/'
-});
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <BrowserRouter basename="/">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/learn" element={<Learn />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/practice" element={<Practice />} />
+        <Route path="/users" element={<ProtectedRoute allowedProfiles={['admin']}><GetUsers /></ProtectedRoute>} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   </StrictMode>,
-)
-
+);
