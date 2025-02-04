@@ -13,3 +13,4 @@ export { default as MatePractice } from './Training/MatePractice.tsx';
 export { default as GetUsers } from './Users/GetUsers.tsx';
 export { default as ProtectedRoute } from './ProtectedRoute/ProtectedRoute.tsx';
 export { default as ChessboardInterface } from './ChessboardInterface/ChessboardInterface.tsx';
+export { default as DarkLightBtns } from './DarkLightBtns/DarkLightBtns.tsx';
