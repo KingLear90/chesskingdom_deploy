@@ -43,8 +43,8 @@ function Contact() {
             <textarea name="message" className='contact-textarea' id="message" rows={8} maxLength={250} placeholder="Escriba su mensaje..."/> 
 
             <div className="contact-buttons">
-              <button type="submit" className="btn btn-primary py-2">Enviar</button>
-              <button type="reset" className="btn btn-danger py-2">Borrar</button>
+              <button type="submit" className="btn btn-primary py-2 mt-4">Enviar</button>
+              <button type="reset" className="btn btn-danger py-2 mt-4">Borrar</button>
             </div> 
         </form>
          {/* Como thanks es true, se muestra el mensaje de agradecimiento */}
