@@ -1,4 +1,4 @@
-.App {
+body {
   background: rgb(232, 239, 239);
   display: flex;
   flex-direction: column;
@@ -6,6 +6,11 @@
   min-height: 100vh;
   width: 100%;
   margin: 0;
+}
+
+body.dark-mode {
+  background: rgb(51, 48, 48);
+  color: white;
 }
 
 .App .productsContainer {
