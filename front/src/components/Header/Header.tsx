@@ -1,7 +1,8 @@
 import './Header.css'
 import { HeaderProps } from '../../types/interfaces';
+import DarkLightBtns from '../DarkLightBtns/DarkLightBtns';
 
-function Header( {brandName, brandURL, navLinks}: HeaderProps ) {
+function Header( {brandName, brandURL, navLinks }: HeaderProps ) {
     return (
         <div className='navDisposition'>
             <nav className="navbar navbar-expand-xl">
@@ -18,10 +19,10 @@ function Header( {brandName, brandURL, navLinks}: HeaderProps ) {
                         ))}
                     </ul>
                 </div>
+                <DarkLightBtns />
             </nav>
         </div>
     )
-
 }
 
 export default Header;
