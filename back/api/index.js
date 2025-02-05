@@ -9,7 +9,7 @@ import cookieParser from 'cookie-parser'
 import session from 'express-session'
 import cors from 'cors'
 
-const app = express()
+export const app = express()
 
 app.use(express.json())
 
@@ -55,15 +55,6 @@ app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 app.use("/api/category", categoryRoute);
 
-process.on("uncaughtException", (err) => {
-    console.error("Uncaught Exception:", err);
-});
-
-process.on("unhandledRejection", (reason, promise) => {
-    console.error("Unhandled Rejection at:", promise, "reason:", reason);
-});
-
-console.log("Server is running")
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 });
