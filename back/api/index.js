@@ -31,18 +31,24 @@ app.use(
     })
 )
 
+const allowedOrigins = [
+    'https://chesskingdom.vercel.app',
+    'http://localhost:5173',
+    'http://localhost:3001'
+];
+
 app.use(cors({
-    origin: [
-      'https://chesskingdom.vercel.app',
-      'https://chesskingdomthebackend.vercel.app',
-      'http://localhost:5173',
-      'http://localhost:3001'
-    ],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
-    exposedHeaders: ['Content-Range', 'X-Content-Range']
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true
 }));
+
+app.options('*', cors());
 
 //Conexión a la base de datos
 connectDB();
