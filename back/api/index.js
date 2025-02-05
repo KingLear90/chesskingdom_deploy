@@ -30,7 +30,7 @@ app.use(
 )
 
 app.use(cors({
-    origin: '*',
+    origin: 'https://chesskingdom.vercel.app/',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
