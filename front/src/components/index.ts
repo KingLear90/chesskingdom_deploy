@@ -10,7 +10,7 @@ export { default as ChampsApi } from './ChampsApi/ChampsApi.tsx';
 export { default as Events } from './Events/Events.tsx'
 export { default as Footer } from './Footer/Footer';
 export { default as MatePractice } from './Training/MatePractice.tsx';
-export { default as GetUsers } from './Users/GetUsers.tsx';
+export { default as GetUsers } from './Users/Users.tsx';
 export { default as ProtectedRoute } from './ProtectedRoute/ProtectedRoute.tsx';
 export { default as ChessboardInterface } from './ChessboardInterface/ChessboardInterface.tsx';
 export { default as DarkLightBtns } from './DarkLightBtns/DarkLightBtns.tsx';
