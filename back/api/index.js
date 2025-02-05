@@ -30,11 +30,25 @@ app.use(
 )
 
 app.use(cors({
-    origin: ['https://chesskingdom.vercel.app', 'http://localhost:5173'],
+    origin: [
+      'https://chesskingdom.vercel.app',
+      'https://chesskingdomthebackend.vercel.app',
+      'http://localhost:5173',
+      'http://localhost:3001'
+    ],
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-  }));
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
+    exposedHeaders: ['Content-Range', 'X-Content-Range']
+}));
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://chesskingdom.vercel.app');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    next();
+});
 
 //Conexión a la base de datos
 connectDB();
