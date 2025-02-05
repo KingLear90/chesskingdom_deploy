@@ -6,11 +6,12 @@ import { User } from '../../types/interfaces';
 
 function GetUsers() {
   const [users, setUsers] = useState<User[]>([]);
+  const initialUrl = import.meta.env.VITE_API_URL
 
   try {
     useEffect(() => {
       const fetchUsers = async () => {
-        const response = await fetch('http://localhost:3001/api/user/get', {
+        const response = await fetch(`${initialUrl}user/get`, {
           method: 'GET',
           headers: getAuthHeaders()
         })
@@ -31,7 +32,7 @@ function GetUsers() {
     }
     if (confirm('¿Eliminar usuario?')) {
     try {
-      const response = await fetch(`http://localhost:3001/api/user/delete/${id}`, {
+      const response = await fetch(`${initialUrl}user/delete/${id}`, {
         method: 'DELETE',
         headers: getAuthHeaders()
       })

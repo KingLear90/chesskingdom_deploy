@@ -10,10 +10,11 @@ function SignUp() {
   const navigate = useNavigate();
   const [registrationSuccess, setRegistrationSuccess] = useState(false)
   const { register, handleSubmit, formState: { errors } } = useForm<SignUpForm>()
+  const initialUrl = import.meta.env.VITE_API_URL
 
   const onSubmit = async (formData: SignUpForm) => {
     try {
-      const response = await fetch('http://localhost:3001/api/user/create', {
+      const response = await fetch(`${initialUrl}user/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

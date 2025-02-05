@@ -9,6 +9,7 @@ function Login() {
   const [sesion, setSesion] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+  const initialUrl = import.meta.env.VITE_API_URL
   const navigate = useNavigate(); 
   const toSignUp = () => {
     navigate('/signup');
@@ -24,7 +25,7 @@ function Login() {
 
   const handleSignIn = async (formData: FormData) => {
     try {
-      const response = await fetch('http://localhost:3001/api/user/login', {
+      const response = await fetch(`${initialUrl}user/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

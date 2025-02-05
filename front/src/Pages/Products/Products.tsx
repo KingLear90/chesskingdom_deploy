@@ -11,10 +11,11 @@ function Products() {
   const [products, setProducts] = useState<Product[]>([])
   const [editMode, setEditMode] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
+  const initialUrl = import.meta.env.VITE_API_URL
   
   const productsItems = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/product/get', {
+      const response = await fetch(`${initialUrl}product/get`, {
         headers: getAuthHeaders()
       })
       const data = await response.json()
@@ -29,7 +30,7 @@ function Products() {
   const removeProduct = async ( _id: string )  => {
     if (confirm('¿Eliminar producto?')) {
     try {
-      const response = await fetch(`http://localhost:3001/api/product/delete/${_id}`, {
+      const response = await fetch(`${initialUrl}product/delete/${_id}`, {
         method: 'DELETE',
         headers: getAuthHeaders(),
       })
@@ -61,7 +62,7 @@ function Products() {
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/api/product/update/${selectedProduct._id}`, {
+      const response = await fetch(`${initialUrl}product/update/${selectedProduct._id}`, {
       method: 'PUT',
       headers: getAuthHeaders(),
       body: JSON.stringify(selectedProduct)
@@ -122,7 +123,7 @@ function Products() {
                     value={selectedProduct?.productName || ''}
                     onChange={(e) => {
                       if (selectedProduct) {
-                        setSelectedProduct({...product, productName: e.target.value})
+                        setSelectedProduct({...selectedProduct, productName: e.target.value})
                       }
                     }}  
                   />
@@ -133,7 +134,7 @@ function Products() {
                     value={selectedProduct?.price || ''}
                     onChange={(e) => {
                       if (selectedProduct) {
-                        setSelectedProduct({...product, price: e.target.value})
+                        setSelectedProduct({...selectedProduct, price: e.target.value})
                       }
                     }}
                   />
@@ -146,7 +147,7 @@ function Products() {
                     value={selectedProduct?.description || ''}
                     onChange={(e) => {
                       if (selectedProduct) {
-                        setSelectedProduct({...product, description: e.target.value})
+                        setSelectedProduct({...selectedProduct, description: e.target.value})
                       }
                     }}
                   />
@@ -157,7 +158,7 @@ function Products() {
                     value={selectedProduct?.url || ''}
                     onChange={(e) => {
                       if (selectedProduct) {
-                        setSelectedProduct({...product, url: e.target.value})
+                        setSelectedProduct({...selectedProduct, url: e.target.value})
                       }
                     }}
                   />
@@ -172,6 +173,5 @@ function Products() {
           </div>
     </App>
   )
-}
 
-export default Products
+}export default Products
