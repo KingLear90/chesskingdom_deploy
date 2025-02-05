@@ -6,6 +6,8 @@ export interface User {
   _id: string;
   name: string;
   email: string;
+  password: string;
+  newPassword?: string;
   profile: Profile;  // Única y estrictamente 'admin', 'employee', o 'user'
 }
 
