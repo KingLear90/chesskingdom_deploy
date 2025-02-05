@@ -42,14 +42,6 @@ app.use(cors({
     exposedHeaders: ['Content-Range', 'X-Content-Range']
 }));
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://chesskingdom.vercel.app');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    next();
-});
-
 //Conexión a la base de datos
 connectDB();
 
@@ -61,6 +53,4 @@ app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 app.use("/api/category", categoryRoute);
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-});
+export default app;
