@@ -9,7 +9,7 @@ import cookieParser from 'cookie-parser'
 import session from 'express-session'
 import cors from 'cors'
 
-const app = express()
+export const app = express()
 
 // Parsea a JSON las solicitudes
 app.use(bodyParser.json()) 
@@ -53,4 +53,6 @@ app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 app.use("/api/category", categoryRoute);
 
-export default app;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+});
