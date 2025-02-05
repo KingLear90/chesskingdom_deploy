@@ -9,7 +9,7 @@ import cookieParser from 'cookie-parser'
 import session from 'express-session'
 import cors from 'cors'
 
-const app = express()
+export const app = express()
 
 app.use(express.json())
 
