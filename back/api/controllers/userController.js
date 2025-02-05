@@ -17,6 +17,7 @@ export const createUser = async (req, res) => {
 
       // Si el usuario no existe, se guarda en la db
       const savedUser = await userData.save();
+      console.log('User saved:', savedUser);
       // 201, porque se creo un nuevo usuario.
       return res.status(201).json({ message: "User created", data : { savedUser } });;
     } 

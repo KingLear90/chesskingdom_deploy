@@ -4,7 +4,7 @@ import { MONGODB_URI } from './config.js' // Llamado a la DB desde la variable d
 // Se exporta la función asíncrona connectDB:
 export const connectDB = async () => { 
     try {
-        const db = await mongoose.connect(MONGODB_URI);
+        const db = await mongoose.connect(MONGODB_URI, {dbName: 'chessDB'});
         console.log('Database connected');
         } catch (error) {
         console.error("Error connecting to database", error);
