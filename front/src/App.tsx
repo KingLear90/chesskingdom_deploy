@@ -16,7 +16,7 @@ export default function App( { children }: AppProps) {
   return (
     <div className='App'>
       <div>
-        <Header brandName='ChessKindgom' brandURL='/' navLinks={navigationLinks} />
+        <Header brandName='ChessKingdom' brandURL='/' navLinks={navigationLinks} />
       </div>
       <div>
         {children}
