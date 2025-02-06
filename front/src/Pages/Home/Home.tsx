@@ -27,7 +27,7 @@ const primaryEvent = () => {
 function Home () {
   return (
     <App>
-      <div>
+      <div className='home-container'>
           <div className='image-container'>
               {/*Extiendo las props del objeto logo a lo que el componente Logo renderiza (en este caso solo una imagen) */}
               <Logo {...logo}/> 
