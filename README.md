@@ -1,13 +1,15 @@
 <h1>Trabajo final UTN (MERN stack (MongoDB, Express, React, Node.js))- Diplomatura Web Full Stack, 2024 <img src="https://user-images.githubusercontent.com/74038190/216120981-b9507c36-0e04-4469-8e27-c99271b45ba5.png" width="30px"></h1>
 
 <h3>Descripción del proyecto</h3>
-[<B>ACLARACIÓN PREVIA:</B> La sección del front, aunque incompleta y con posibilidad de mejoras varias, dispone de su propio README para utilizar la sección /learn].<br>
+[<B>ACLARACIÓN PREVIA:</B> El sitio está desplegado en Vercel, tanto el backend -ligado a la base de datos- como el frontend, y puede accederse desde: https://<b>chesskingdom.vercel.app/home</b> .<br>
 <br>
 El siguiente trabajo está basado en una <b>API Rest</b> desarrollada como parte final de la Diplomatura Full Stack en Desarrollo Web, de la <b>Universidad Tecnológica Nacional (UTN)</b>.<br>
 
 La aplicación realiza actividades CRUD (create, read, update, delete) sobre usuarios (users), productos (products) y categorías (categories) a partir de sus respectivos endpoints.<br>
 
-El proyecto realiza de manera completa el CRUD en el backend, y por el momento realiza sólo algunas acciones desde el frontend (crear (y loguear), ver y eliminar usuarios; y ver, editar y eliminar productos).
+El proyecto realiza de manera completa el CRUD en el backend, y por el momento realiza sólo algunas acciones desde el frontend (crear (y loguear), ver, editar y eliminar usuarios; y ver, editar y eliminar productos). <br>
+
+Demás funciones (como ver, crear, editar y eliminar categorías) se encuentran en proceso de desarrollo pero pueden llevarse a cabo vía CLI o Postman siguiendo las especificaciones detalladas más adelante en este documento.<br>
 
 <h3>Tecnologías implementadas</h3>
 
@@ -38,7 +40,7 @@ En el frontend: <br>
 
 1. Clonar el proyecto: <br>
 ```bash
-  git clone https://github.com/KingLear90/CRUD---final-UTN-.git
+  git clone https://github.com/KingLear90/chesskingdom_deploy.git
 ```
 2. Instalar dependencias backend
 ```bash
