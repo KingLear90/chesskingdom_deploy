@@ -1,3 +1,4 @@
+import './Users.css'
 import { useState } from 'react';
 import { useFetchUser } from '../../hooks/user/useFetchUser';
 import { useDeleteUser } from '../../hooks/user/useDeleteUser';
