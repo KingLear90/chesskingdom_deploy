@@ -84,9 +84,9 @@ export interface Product {
   _id: string;
   productName: string;
   price: string | number;
-  url: string | undefined;
-  description: string | undefined;
-  category_id: {
+  url: string;
+  description: string;
+  category_id?: {
     categoryName: string;
   };
 }
