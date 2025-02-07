@@ -3,7 +3,7 @@ import React from 'react'
 function ChessMemory() {
   return (
     <div>
-      <h2>¡Bienvenidos al ChessMemoTest!</h2>
+      <h2>¡Bienvenidos al MemoChess!</h2>
     </div>
   )
 }
