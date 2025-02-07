@@ -5,7 +5,7 @@
     "moduleResolution": "Node",
     "jsx": "react-jsx",
     "types": ["vite/client"],
-    "lib": ["ES2015", "DOM"],
+    "lib": ["ES2016", "DOM"],
     "noEmit": true,
     "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true
