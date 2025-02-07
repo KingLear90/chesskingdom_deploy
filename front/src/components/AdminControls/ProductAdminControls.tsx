@@ -1,4 +1,5 @@
 
+import { IconButton } from "@mui/material";
 import { ProductAdminControlsProps } from "../../types/interfaces"
 
 const ProductAdminControls: React.FC<ProductAdminControlsProps> = ({ onEdit, onDelete }) => {
@@ -9,8 +10,8 @@ const ProductAdminControls: React.FC<ProductAdminControlsProps> = ({ onEdit, onD
     }
   return (
     <div className="product-controls">
-        <button onClick={onEdit}>Editar</button>
-        <button onClick={onDelete}>Eliminar</button>
+        <IconButton onClick={onEdit}>Editar</IconButton>
+        <IconButton onClick={onDelete}>Eliminar</IconButton>
     </div>
   )
 }

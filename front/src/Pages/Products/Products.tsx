@@ -99,26 +99,21 @@ function Products() {
         <h4>Encuentra productos de tu interés: tableros, libros ¡y muchos más!</h4>
         {products && products.map((product: any) => (
           <div key={product._id} className="product-card">
-            <h3>{product.productName}</h3>
-            <img src={product.url} alt={product.productName} onClick={() => window.open(product.url, '_blank')} onError={() => {
-              alert(`Error al cargar la imagen, ${product.productName}`)
-            }}/>
-            <p className="price">Precio: ${product.price}</p>
-            <p className="description">{product.description}</p>
-            <p className="category">Categoría: {product.category_id?.categoryName || 'Sin categoría definida'}</p>
-            <div className="button-group">
+          <h3>{product.productName}</h3>
+          <img src={product.url} 
+          alt={product.productName} 
+          onClick={() => window.open(product.url, '_blank') } 
+          onError={() => alert(`Error al cargar la imagen, ${product.productName}`) }/>
+          <p className="price">Precio: ${product.price}</p>
+          <p className="description">{product.description}</p>
+          <p className="category">Categoría: {product.category_id?.categoryName || 'Sin categoría definida'}</p>
+          <div className="button-group">
             <ProductAdminControls
-               onEdit={() => handleEdit(product)}
-               onDelete={() => removeProduct(product._id)}
+              onEdit={() => handleEdit(product)}
+              onDelete={() => removeProduct(product._id)}
             />
-            <IconButton onClick={() => handleEdit(product)}>
-               <Edit />
-             </IconButton>
-            <IconButton aria-label="delete" onClick={() => removeProduct(product._id)}>
-              <DeleteIcon />
-            </IconButton>
-             </div>
-            <Modal open={editMode} onClose={() => setEditMode(false)}>
+          </div>
+          <Modal open={editMode} onClose={() => setEditMode(false)}>
               <Box sx={modalStyle}>
                 <form onSubmit={handleUpdate}>
                   <TextField
