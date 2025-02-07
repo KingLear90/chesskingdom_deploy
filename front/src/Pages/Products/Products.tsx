@@ -2,8 +2,6 @@ import './Products.css'
 import App from '../../App'
 import { useState, useEffect } from 'react'
 import { Box, Button, IconButton, Modal, TextField } from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete';
-import { Edit } from '@mui/icons-material';
 import { Product } from '../../types/interfaces';
 import { getAuthHeaders } from '../../utils/getAuthHeaders';
 import ProductAdminControls from '../../components/AdminControls/ProductAdminControls';
@@ -12,7 +10,7 @@ function Products() {
   const [products, setProducts] = useState<Product[]>([])
   const [editMode, setEditMode] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
-  const initialUrl = import.meta.env.VITE_API_URL
+  const initialUrl = import.meta.env.VITE_API_URL as string 
   
   const productsItems = async () => {
     try {
@@ -20,7 +18,6 @@ function Products() {
         headers: getAuthHeaders()
       })
       const data = await response.json()
-      console.log(data)
       setProducts(data)
     } catch (error) {
       console.log(error)
@@ -30,18 +27,18 @@ function Products() {
 
   const removeProduct = async ( _id: string )  => {
     if (confirm('¿Eliminar producto?')) {
-    try {
-      const response = await fetch(`${initialUrl}product/delete/${_id}`, {
-        method: 'DELETE',
-        headers: getAuthHeaders(),
-      })
-      if (response.ok) {
-        setProducts(products.filter((product: any) => product._id !== _id))
-        productsItems()
+      try {
+        const response = await fetch(`${initialUrl}product/delete/${_id}`, {
+          method: 'DELETE',
+          headers: getAuthHeaders(),
+        })
+        if (response.ok) {
+          setProducts(products.filter((product: any) => product._id !== _id))
+          productsItems()
+        }
+      } catch (error) {
+        console.error('Error deleting product:', error)
       }
-    } catch (error) {
-      console.error('Error deleting product:', error)
-    }
     }
   }
 
@@ -50,7 +47,7 @@ function Products() {
     setEditMode(true)
   }
 
-  const handleUpdate = async (e: React.FormEvent) => {
+  const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!selectedProduct) {
       return
@@ -95,15 +92,17 @@ function Products() {
 
   return (
     <App>
-      <div className='"grid grid-cols-[repeat(3,1fr)] grid-rows-[repeat(3,1fr)] gap-y-[10px] gap-x-[10px] justify-items-center content-start justify-start items-stretch auto-cols-[auto] auto-rows-[auto] grid-flow-row">
+      <div className="products-container">
         <h4>Encuentra productos de tu interés: tableros, libros ¡y muchos más!</h4>
-        {products && products.map((product: any) => (
+        {products && products.map((product: Product) => (
           <div key={product._id} className="product-card">
           <h3>{product.productName}</h3>
-          <img src={product.url} 
-          alt={product.productName} 
-          onClick={() => window.open(product.url, '_blank') } 
-          onError={() => alert(`Error al cargar la imagen, ${product.productName}`) }/>
+          <img 
+            src={product.url} 
+            alt={product.productName} 
+            onClick={() => window.open(product.url, '_blank') } 
+            onError={() => alert(`Error al cargar la imagen, ${product.productName}`)}
+          />
           <p className="price">Precio: ${product.price}</p>
           <p className="description">{product.description}</p>
           <p className="category">Categoría: {product.category_id?.categoryName || 'Sin categoría definida'}</p>
