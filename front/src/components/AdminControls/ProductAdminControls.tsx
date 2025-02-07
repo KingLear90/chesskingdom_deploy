@@ -1,6 +1,6 @@
-
-import { IconButton } from "@mui/material";
 import { ProductAdminControlsProps } from "../../types/interfaces"
+import { IconButton } from "@mui/material";
+import { Delete, Edit } from "@mui/icons-material";
 
 const ProductAdminControls: React.FC<ProductAdminControlsProps> = ({ onEdit, onDelete }) => {
     const userProfile = localStorage.getItem('profile');
@@ -10,8 +10,8 @@ const ProductAdminControls: React.FC<ProductAdminControlsProps> = ({ onEdit, onD
     }
   return (
     <div className="product-controls">
-        <IconButton onClick={onEdit}>Editar</IconButton>
-        <IconButton onClick={onDelete}>Eliminar</IconButton>
+        <IconButton onClick={onEdit}><Edit /></IconButton>
+        <IconButton onClick={onDelete}><Delete /></IconButton>
     </div>
   )
 }
