@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import App from '../../App'
+const ChessMemory = React.lazy(() => import('../../components/ChessMemory/ChessMemory'));
 const MatePractice = React.lazy(() => import('../../components/Training/MatePractice'));
 
 function Practice() {
@@ -8,6 +9,7 @@ function Practice() {
         <div>
           <Suspense fallback={<div>Cargando...</div>}>
             <MatePractice />
+            <ChessMemory />
           </Suspense>
         </div>
     </App>
