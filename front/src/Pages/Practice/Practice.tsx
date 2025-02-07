@@ -9,7 +9,6 @@ function Practice() {
         <div>
           <Suspense fallback={<div>Cargando...</div>}>
             <MatePractice />
-            <ChessMemory />
           </Suspense>
         </div>
     </App>
