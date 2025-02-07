@@ -1,0 +1,8 @@
+{
+    "name": "utn-deplo",
+    "private": true,
+    "workspaces": [
+      "front",
+      "back"
+    ]
+}
