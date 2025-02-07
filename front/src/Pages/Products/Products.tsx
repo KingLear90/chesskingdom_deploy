@@ -95,7 +95,7 @@ function Products() {
 
   return (
     <App>
-      <div className='productsContainer'>
+      <div className='"grid grid-cols-[repeat(3,1fr)] grid-rows-[repeat(3,1fr)] gap-y-[10px] gap-x-[10px] justify-items-center content-start justify-start items-stretch auto-cols-[auto] auto-rows-[auto] grid-flow-row">
         <h4>Encuentra productos de tu interés: tableros, libros ¡y muchos más!</h4>
         {products && products.map((product: any) => (
           <div key={product._id} className="product-card">
