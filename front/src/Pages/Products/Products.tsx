@@ -94,9 +94,8 @@ function Products() {
 
   return (
     <App>
-      <div className='productsContainer'>
+      <div className='productsContainer' style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginTop: '30px' }}>
         <h4>Encuentra productos de tu interés: tableros, libros ¡y muchos más!</h4>
-        <div className="product-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginTop: '30px' }}>
         {products && products.map((product: any) => (
           <div key={product._id} className="product-card">
             <h3>{product.productName}</h3>
@@ -172,7 +171,6 @@ function Products() {
               </div>
             ))}
           </div>
-        </div>
     </App>
   )
 
