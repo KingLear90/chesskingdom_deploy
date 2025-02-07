@@ -94,7 +94,7 @@ function Products() {
 
   return (
     <App>
-      <div className='productsContainer' style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginTop: '30px' }}>
+      <div className='productsContainer'>
         <h4>Encuentra productos de tu interés: tableros, libros ¡y muchos más!</h4>
         {products && products.map((product: any) => (
           <div key={product._id} className="product-card">
