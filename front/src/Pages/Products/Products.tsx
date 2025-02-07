@@ -6,6 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Edit } from '@mui/icons-material';
 import { Product } from '../../types/interfaces';
 import { getAuthHeaders } from '../../utils/getAuthHeaders';
+import ProductAdminControls from '../../components/AdminControls/ProductAdminControls';
 
 function Products() {
   const [products, setProducts] = useState<Product[]>([])
@@ -106,6 +107,10 @@ function Products() {
             <p className="description">{product.description}</p>
             <p className="category">Categoría: {product.category_id?.categoryName || 'Sin categoría definida'}</p>
             <div className="button-group">
+            <ProductAdminControls
+               onEdit={() => handleEdit(product)}
+               onDelete={() => removeProduct(product._id)}
+            />
             <IconButton onClick={() => handleEdit(product)}>
                <Edit />
              </IconButton>

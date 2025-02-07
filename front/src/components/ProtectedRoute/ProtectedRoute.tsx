@@ -10,7 +10,7 @@ const ProtectedRoute = ({ children, allowedProfiles }: ProtectedRouteProps) => {
 
     if (!userProfile || !allowedProfiles.includes(userProfile)) { 
       return <Navigate to="/signin" />;
-    }
+    }    
     
   return (
     <>
