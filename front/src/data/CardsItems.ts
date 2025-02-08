@@ -1,4 +1,6 @@
-export const cardsItems: object[] = [
+import { cardData } from "../types/interfaces";
+
+export const cardsItems: cardData[] = [
     {
         id: 'card1',
         title: 'Fundamentos del Ajedrez',

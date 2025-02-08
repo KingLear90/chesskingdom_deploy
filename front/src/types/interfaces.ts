@@ -42,16 +42,18 @@ export interface EventProps {
     event: JSX.Element | string;
 }
 
+export interface cardData {
+  id: string;
+  title: string;
+  src: string;
+  alt: string;
+  description: string;
+  imgSize: string;
+};
+
 export interface CardProps {
-    cardData: {
-      id: string;
-      title: string;
-      src: string;
-      alt: string;
-      description: string;
-      imgSize: string;
-    };
-  }
+    cardData: cardData[];
+}
 
 export interface ChampionsProps {
   champions: { 
