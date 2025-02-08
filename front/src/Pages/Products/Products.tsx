@@ -106,6 +106,9 @@ function Products() {
           <p className="price">Precio: ${product.price}</p>
           <p className="description">{product.description}</p>
           <p className="category">Categoría: {product.category_id?.categoryName || 'Sin categoría definida'}</p>
+          {product.category_id?.categoryName === 'books' && (
+            <p className="category">Categoría: {"Libros"}</p>
+          )}
           <div className="button-group">
             <ProductAdminControls
               onEdit={() => handleEdit(product)}
