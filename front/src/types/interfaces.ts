@@ -80,6 +80,13 @@ export interface ChessboardProps {
     boardOrientation: "white" | "black";
 }
 
+export interface ChessProblemProps {
+  fen: string;
+  solution: string[];
+  description?: string;
+  side: 'w' | 'b';
+}
+
 export interface Product {
   _id: string;
   productName: string;

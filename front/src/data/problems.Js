@@ -1,4 +1,4 @@
-export const problems: object[] = [
+export const problems = [
     {
       fen: 'r1b1k2r/pp3pp1/2p4b/4p3/2B3n1/NPN2QPq/P4P1P/3R1RK1 w - - 1 21',
       solution: ['f3f7'],

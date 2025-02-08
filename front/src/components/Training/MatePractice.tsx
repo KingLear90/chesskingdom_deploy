@@ -3,15 +3,16 @@ import { useState, useEffect } from 'react';
 import { Chess } from 'chess.js';
 import ChessboardInterface from '../ChessboardInterface/ChessboardInterface';
 import ConfettiExplosion from 'react-confetti-explosion';
-import { problems } from '../../data/problems';
+import { problems } from '../../data/problems.js';
+import { ChessProblemProps } from '../../types/interfaces';
 
 const MatePractice = () => {
   
   const [chess] = useState(new Chess());
   const [fen, setFen] = useState<string>(chess.fen()); // FEN inicial del primer problema
   const [currentMove, setCurrentMove] = useState(0); // Mueve el marcador en el problema
-  const [currentStep, setCurrentStep] = useState<number>(0);
-  const [isGameOver, setIsGameOver] = useState(false); // Estado para controlar si el juego ha terminado
+  const [currentStep, setCurrentStep] = useState(0);
+  const [isGameOver, setIsGameOver] = useState(false);
   const [isExploding, setIsExploding] = useState(false);
 
   useEffect(() => {
