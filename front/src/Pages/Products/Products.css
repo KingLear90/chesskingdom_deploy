@@ -1,6 +1,16 @@
+.App .productsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 85%;
+}
+
 .productsContainer {
     display: flex;
     flex-direction: row;
+    justify-content: row;
     align-items: center;
     padding: 10px;
 }

@@ -92,8 +92,8 @@ function Products() {
 
   return (
     <App>
+      <h4>Encuentra productos de tu interés: tableros, libros ¡y muchos más!</h4>
       <div className="productsContainer">
-        <h4>Encuentra productos de tu interés: tableros, libros ¡y muchos más!</h4>
         {products && products.map((product: Product) => (
           <div key={product._id} className="product-card">
           <h3>{product.productName}</h3>
