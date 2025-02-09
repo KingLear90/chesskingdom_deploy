@@ -90,90 +90,120 @@ function Products() {
     p: 4,
   }
 
+  type Translations = Record<string, string>;
+
+  const categoryTranslations: Translations = {
+    books: "Libros",
+    chessboards: "Tableros",
+    "chess clocks": "Relojes de ajedrez",
+    "chess sets": "Sets de ajedrez",
+  };
+  
   return (
     <App>
       <h4>Encuentra productos de tu interés: tableros, libros ¡y muchos más!</h4>
       <div className="productsContainer">
-        {products && products.map((product: Product) => (
-          <div key={product._id} className="product-card">
-          <h3>{product.productName}</h3>
-          <img 
-            src={product.url} 
-            alt={product.productName} 
-            onClick={() => window.open(product.url, '_blank') } 
-            onError={() => alert(`Error al cargar la imagen, ${product.productName}`)}
-          />
-          <p className="price">Precio: ${product.price}</p>
-          <p className="description">{product.description}</p>
-          <p className="category">Categoría: {product.category_id?.categoryName || 'Sin categoría definida'}</p>
-          {product.category_id?.categoryName === 'books' && (
-            <p className="category">Categoría: {"Libros"}</p>
-          )}
-          <div className="button-group">
-            <ProductAdminControls
-              onEdit={() => handleEdit(product)}
-              onDelete={() => removeProduct(product._id)}
-            />
-          </div>
-          <Modal open={editMode} onClose={() => setEditMode(false)}>
-              <Box sx={modalStyle}>
-                <form onSubmit={handleUpdate}>
-                  <TextField
-                    fullWidth
-                    label="Nombre del producto"
-                    margin="normal"
-                    value={selectedProduct?.productName || ''}
-                    onChange={(e) => {
-                      if (selectedProduct) {
-                        setSelectedProduct({...selectedProduct, productName: e.target.value})
-                      }
-                    }}  
+        {products &&
+          products.map((product: Product) => {
+            const categoryName = product.category_id?.categoryName || "";
+            const translatedCategory =
+              categoryTranslations[categoryName] || "Sin categoría definida";
+  
+            return (
+              <div key={product._id} className="product-card">
+                <h3>{product.productName}</h3>
+                <img
+                  src={product.url}
+                  alt={product.productName}
+                  onClick={() => window.open(product.url, "_blank")}
+                  onError={() =>
+                    alert(`Error al cargar la imagen, ${product.productName}`)
+                  }
+                />
+                <p className="price">Precio: ${product.price}</p>
+                <p className="description">{product.description}</p>
+                <p className="category">Categoría: {translatedCategory}</p>
+  
+                <div className="button-group">
+                  <ProductAdminControls
+                    onEdit={() => handleEdit(product)}
+                    onDelete={() => removeProduct(product._id)}
                   />
-                  <TextField
-                    fullWidth
-                    label="Precio"
-                    margin="normal"
-                    value={selectedProduct?.price || ''}
-                    onChange={(e) => {
-                      if (selectedProduct) {
-                        setSelectedProduct({...selectedProduct, price: e.target.value})
-                      }
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    label="Descripción"
-                    margin="normal"
-                    multiline
-                    rows={4}
-                    value={selectedProduct?.description || ''}
-                    onChange={(e) => {
-                      if (selectedProduct) {
-                        setSelectedProduct({...selectedProduct, description: e.target.value})
-                      }
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    label="URL de la imagen"
-                    margin="normal"
-                    value={selectedProduct?.url || ''}
-                    onChange={(e) => {
-                      if (selectedProduct) {
-                        setSelectedProduct({...selectedProduct, url: e.target.value})
-                      }
-                    }}
-                  />
-                  <Button type="submit" variant="contained" color="primary">
-                    Update Product
-                  </Button>
-              </form>
-            </Box>
-          </Modal>
+                </div>
+  
+                <Modal open={editMode} onClose={() => setEditMode(false)}>
+                  <Box sx={modalStyle}>
+                    <form onSubmit={handleUpdate}>
+                      <TextField
+                        fullWidth
+                        label="Nombre del producto"
+                        margin="normal"
+                        value={selectedProduct?.productName || ""}
+                        onChange={(e) => {
+                          if (selectedProduct) {
+                            setSelectedProduct({
+                              ...selectedProduct,
+                              productName: e.target.value,
+                            });
+                          }
+                        }}
+                      />
+                      <TextField
+                        fullWidth
+                        label="Precio"
+                        margin="normal"
+                        value={selectedProduct?.price || ""}
+                        onChange={(e) => {
+                          if (selectedProduct) {
+                            setSelectedProduct({
+                              ...selectedProduct,
+                              price: e.target.value,
+                            });
+                          }
+                        }}
+                      />
+                      <TextField
+                        fullWidth
+                        label="Descripción"
+                        margin="normal"
+                        multiline
+                        rows={4}
+                        value={selectedProduct?.description || ""}
+                        onChange={(e) => {
+                          if (selectedProduct) {
+                            setSelectedProduct({
+                              ...selectedProduct,
+                              description: e.target.value,
+                            });
+                          }
+                        }}
+                      />
+                      <TextField
+                        fullWidth
+                        label="URL de la imagen"
+                        margin="normal"
+                        value={selectedProduct?.url || ""}
+                        onChange={(e) => {
+                          if (selectedProduct) {
+                            setSelectedProduct({
+                              ...selectedProduct,
+                              url: e.target.value,
+                            });
+                          }
+                        }}
+                      />
+                      <Button type="submit" variant="contained" color="primary">
+                        Update Product
+                      </Button>
+                    </form>
+                  </Box>
+                </Modal>
               </div>
-            ))}
-          </div>
+            );
+          })}
+      </div>
     </App>
-  )
+  );
+}
 
-}export default Products
+export default Products;
