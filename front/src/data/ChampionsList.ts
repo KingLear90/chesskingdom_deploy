@@ -1,6 +1,6 @@
 import { ChampionsProps } from "../types/interfaces";
 
-export const ChampionsList: any = [
+export const ChampionsList: ChampionsProps['champions'] = [
   {
     src:'./img/Wilhelm_Steinitz.png', 
     id: '1°',
