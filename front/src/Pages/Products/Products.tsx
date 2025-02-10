@@ -126,7 +126,7 @@ function Products() {
   
                 <div className="button-group">
                   <ProductAdminControls
-                    onEdit={() => handleEdit(product)}
+                    onEdit={() => handleEdit(product)} 
                     onDelete={() => removeProduct(product._id)}
                   />
                 </div>
