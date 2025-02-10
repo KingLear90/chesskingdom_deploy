@@ -83,10 +83,9 @@ export interface ChessboardProps {
 }
 
 export interface ChessProblemProps {
-  fen: string;
-  solution: string[];
-  description?: string;
-  side: 'w' | 'b';
+  FEN: string;
+  Moves: string;
+  Themes: string;
 }
 
 export interface Product {

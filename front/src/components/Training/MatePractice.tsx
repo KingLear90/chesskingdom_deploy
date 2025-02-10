@@ -3,28 +3,36 @@ import { useState, useEffect } from 'react';
 import { Chess } from 'chess.js';
 import ChessboardInterface from '../ChessboardInterface/ChessboardInterface';
 import ConfettiExplosion from 'react-confetti-explosion';
-import { problems } from '../../data/problems.js';
+import { getRandomProblem } from '../../services/chessService';
 import { ChessProblemProps } from '../../types/interfaces';
 
 const MatePractice = () => {
-  
   const [chess] = useState(new Chess());
   const [fen, setFen] = useState<string>(chess.fen()); // FEN inicial del primer problema
-  const [currentMove, setCurrentMove] = useState(0); // Mueve el marcador en el problema
+  const [currentProblem, setCurrentProblem] = useState<ChessProblemProps | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
   const [isExploding, setIsExploding] = useState(false);
 
+  //Obtener un problema aleatorio de la BD al cargar la página
+  const fetchNewProblem = async () => {
+    const problem = await getRandomProblem();
+    if (problem) {
+      setCurrentProblem(problem);
+      chess.load(problem.FEN); // Cargar la posición en el motor de ajedrez
+      setFen(chess.fen()); // Actualizar el estado de FEN
+      setIsGameOver(false);
+      setCurrentStep(0);
+    }
+  };
+
   useEffect(() => {
-    chess.load(problems[currentMove].fen); // Cargar el FEN del problema en Chess.js
-    setFen(chess.fen()); // Actualizar el estado de FEN para reflejar la nueva posición
-    setIsGameOver(false); // Reiniciar el estado de fin de juego
-    setCurrentStep(0); // Reiniciar el step actual
-  }, [currentMove]);
+    fetchNewProblem();
+  }, []);
 
   const nextProblem = () => {
     // Cambiar al siguiente problema
-    setCurrentMove((prevMove) => (prevMove + 1) % problems.length); // Cicla entre problemas
+    fetchNewProblem();
     chess.reset(); // Resetear el tablero
     };
     
@@ -39,10 +47,12 @@ const MatePractice = () => {
     if (move === null) return false;
   
     const userMove = `${sourceSquare}${targetSquare}`;
-    const isMateInOne = problems[currentMove].solution.length === 1;
+    const partialSolution: any = currentProblem?.Moves.split("");
+    const solutionMoves: string[] = partialSolution?.slice(1)
   
-    // Manejo de mate en un solo movimiento
-    if (isMateInOne && userMove === problems[currentMove].solution[0]) {
+    const isMateInOne = solutionMoves?.length === 2 
+
+    if (isMateInOne && userMove === solutionMoves[1]) {
       setFen(chess.fen());
       setIsExploding(true);
       setTimeout(() => {
@@ -52,10 +62,10 @@ const MatePractice = () => {
       return true;
     }
     
-    if (userMove === problems[currentMove].solution[currentStep]) {
+    if (userMove === solutionMoves[currentStep]) {
       setFen(chess.fen());
       
-      if (currentStep === problems[currentMove].solution.length - 1) {
+      if (currentStep === solutionMoves.length) {
         // último movimiento de la solución, problema resuelto
         setIsExploding(true);
         setTimeout(() => {
@@ -65,7 +75,7 @@ const MatePractice = () => {
       } else {
         // Respuesta de la computadora
         setTimeout(() => {
-          chess.move(problems[currentMove].solution[currentStep + 1]);
+          chess.move(solutionMoves[currentStep] + 1);
           setFen(chess.fen());
           setCurrentStep(currentStep + 2); // Prepara el siguiente movimiento del usuario
         }, 500);
@@ -83,12 +93,12 @@ const MatePractice = () => {
     <div className="mate-practice">
       <h1>Ejercicios de Jaque Mate</h1>
       <h6>Mejora tu cálculo y visión resolviendo problemas</h6>
-      {problems[currentMove].description ? <h3>{problems[currentMove].description}</h3> : null}
+      {currentProblem?.Themes.includes("mate") ? <h3>Encuentra el jaque mate</h3> : null}
       <div id='chessboard-container'>
         <ChessboardInterface 
           fen={fen} 
           onDrop={onDrop} 
-          boardOrientation={problems[currentMove].side === 'w' ? 'white' : 'black'}
+          boardOrientation={currentProblem?.FEN.includes('w') ? 'white' : 'black'}
           />
       </div>
         {isExploding && <ConfettiExplosion 
