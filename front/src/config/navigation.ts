@@ -5,5 +5,5 @@ export const navigationLinks: { name: string; url: string; }[] = [
     { name: 'Entrenar', url: '/practice' },
     { name: 'Productos', url: '/products'},
     { name: 'Contacto', url: '/contact' },
-    { name: 'Iniciar sesión', url: '/signin'},
+    { name: 'Login', url: '/signin'},
 ]

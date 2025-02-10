@@ -1,7 +1,7 @@
 .navbar {
     background: linear-gradient(180deg, #519bfb, #6294d1c9);  
     display: flex;
-    min-height: 10vh;
+    max-height: auto;
     align-items: center;
     width: 100%;
 }
@@ -49,4 +49,14 @@
 
 ul a {
     color: #ffffff
+}
+
+@media (min-width: 425px) {
+
+}
+
+@media (min-width: 850px) {
+    .navbar{
+        max-width: 1525px;
+    }
 }

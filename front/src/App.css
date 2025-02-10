@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(232, 239, 239);
+  background-color: rgb(205, 219, 219);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,7 +33,6 @@ body.dark-mode {
 }
 
 .App .productsContainer {
-  background: rgb(232, 239, 239);
   display: flex;
   flex-direction: column;
   justify-content: center;
