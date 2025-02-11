@@ -1,8 +1,8 @@
 export const getRandomProblem = async () => {
-    const initialUrl = import.meta.env.VITE_API_CHESS_URL as string 
-    console.log("URL usada en fetch:", `${initialUrl}random-problem`);
+    const initialUrl = import.meta.env.VITE_API_URL as string; 
+    console.log("URL usada en fetch:", `${initialUrl}`);
     try {
-        const response = await fetch(`${initialUrl}/problem/random-problem`);
+        const response = await fetch(`${initialUrl}problem/get`);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }

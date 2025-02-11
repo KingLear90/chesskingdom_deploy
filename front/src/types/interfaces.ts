@@ -84,7 +84,7 @@ export interface ChessboardProps {
 
 export interface ChessProblemProps {
   FEN: string;
-  Moves: string;
+  Moves: string[];
   Themes: string;
 }
 

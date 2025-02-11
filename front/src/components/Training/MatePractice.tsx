@@ -16,14 +16,18 @@ const MatePractice = () => {
 
   //Obtener un problema aleatorio de la BD al cargar la página
   const fetchNewProblem = async () => {
-    const problem = await getRandomProblem();
-    if (problem) {
-      setCurrentProblem(problem);
-      chess.load(problem.FEN); // Cargar la posición en el motor de ajedrez
-      setFen(chess.fen()); // Actualizar el estado de FEN
-      setIsGameOver(false);
-      setCurrentStep(0);
-    }
+    try {
+      const problem = await getRandomProblem();
+      if (problem) {
+        setCurrentProblem(problem);
+        chess.load(problem.FEN); // Cargar la posición en el motor de ajedrez
+        setFen(chess.fen()); // Actualizar el estado de FEN
+        setIsGameOver(false);
+        setCurrentStep(0);
+      }
+    } catch (error) {
+      console.error('Error fetching problem:', error);
+    } 
   };
 
   useEffect(() => {
@@ -54,12 +58,11 @@ const MatePractice = () => {
     if (move === null) return false;
   
     const userMove = `${sourceSquare}${targetSquare}`;
-    const partialSolution: any = currentProblem?.Moves.split("");
-    const solutionMoves: string[] = partialSolution?.slice(1)
-  
-    const isMateInOne = solutionMoves?.length === 2 
+    const solutionMoves: any = currentProblem?.Moves
+   
+    const isMateInOne = solutionMoves?.length === 1 
 
-    if (isMateInOne && userMove === solutionMoves[1]) {
+    if (isMateInOne && userMove === solutionMoves[0]) {
       setFen(chess.fen());
       setIsExploding(true);
       setTimeout(() => {
@@ -72,7 +75,7 @@ const MatePractice = () => {
     if (userMove === solutionMoves[currentStep]) {
       setFen(chess.fen());
       
-      if (currentStep === solutionMoves.length) {
+      if (currentStep === solutionMoves.length - 1) {
         // último movimiento de la solución, problema resuelto
         setIsExploding(true);
         setTimeout(() => {
