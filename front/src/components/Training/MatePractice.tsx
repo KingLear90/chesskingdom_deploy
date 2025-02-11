@@ -27,7 +27,14 @@ const MatePractice = () => {
   };
 
   useEffect(() => {
-    fetchNewProblem();
+    const fetchProblem = async () => {
+      const problem = await getRandomProblem();
+      if (problem) {
+        chess.load(problem.FEN);
+        setFen(chess.fen());
+      }    
+    };
+    fetchProblem();
   }, []);
 
   const nextProblem = () => {

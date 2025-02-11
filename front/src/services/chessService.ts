@@ -1,6 +1,7 @@
 export const getRandomProblem = async () => {
+    const initialUrl = import.meta.env.VITE_API_CHESS_URL as string 
     try {
-        const response = await fetch('https://chesskingdomthebackend.vercel.app/chess/random-problem');
+        const response = await fetch(`${initialUrl}random-problem`);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
