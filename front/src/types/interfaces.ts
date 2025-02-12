@@ -79,13 +79,16 @@ export interface Champion {
 export interface ChessboardProps {
     fen: string;
     onDrop: (sourceSquare: string, targetSquare: string) => boolean;
+    onPieceClick: (square: string) => void;
     boardOrientation: "white" | "black";
 }
 
 export interface ChessProblemProps {
-  FEN: string;
-  Moves: string[];
-  Themes: string;
+  _id: string;
+  fen: string,
+  solution: string[],
+  side: string,
+  description: string
 }
 
 export interface Product {
