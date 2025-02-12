@@ -3,52 +3,51 @@ import { useState, useEffect } from 'react';
 import { Chess } from 'chess.js';
 import ChessboardInterface from '../ChessboardInterface/ChessboardInterface';
 import ConfettiExplosion from 'react-confetti-explosion';
-import { getRandomProblem } from '../../services/chessService';
 import { ChessProblemProps } from '../../types/interfaces';
+
 
 const MatePractice = () => {
   const [chess] = useState(new Chess());
-  const [fen, setFen] = useState<string>(chess.fen()); // FEN inicial del primer problema
-  const [currentProblem, setCurrentProblem] = useState<ChessProblemProps | null>(null);
+  const [fen, setFen] = useState<string>(''); // FEN inicial del primer problema
+  const [currentProblem, setCurrentProblem] = useState<ChessProblemProps>();
   const [currentStep, setCurrentStep] = useState(0);
+  const [pieceSquare, setPieceSquare] = useState<string | null>(null);
   const [isGameOver, setIsGameOver] = useState(false);
   const [isExploding, setIsExploding] = useState(false);
+  const initialUrl = import.meta.env.VITE_API_URL as string
 
   //Obtener un problema aleatorio de la BD al cargar la página
   const fetchNewProblem = async () => {
     try {
-      const problem = await getRandomProblem();
-      if (problem) {
-        setCurrentProblem(problem);
-        chess.load(problem.FEN); // Cargar la posición en el motor de ajedrez
-        setFen(chess.fen()); // Actualizar el estado de FEN
-        setIsGameOver(false);
-        setCurrentStep(0);
+      const response = await fetch(`${initialUrl}problem/get-random`); // Petición a BD del back
+      const data = await response.json();
+
+      if (data) {
+          console.log("New chess problem: ", data.fen, data.description);
+          chess.load(data.fen);
+          setFen(data.fen);
+          setCurrentProblem(data);
+          setIsGameOver(false);
+          setCurrentStep(0);
       }
     } catch (error) {
-      console.error('Error fetching problem:', error);
+      console.error("Error fetching problem:", error);
     } 
   };
 
   useEffect(() => {
-    const fetchProblem = async () => {
-      const problem = await getRandomProblem();
-      if (problem) {
-        chess.load(problem.FEN);
-        setFen(chess.fen());
-      }    
-    };
-    fetchProblem();
+    fetchNewProblem();
   }, []);
 
   const nextProblem = () => {
     // Cambiar al siguiente problema
+    chess.reset()
     fetchNewProblem();
-    chess.reset(); // Resetear el tablero
     };
     
   // Manejar el evento de mover una pieza
   const onDrop = (sourceSquare: string, targetSquare: string) => {
+    console.log("Intentando mover:", sourceSquare, "->", targetSquare);
     const move = chess.move({
       from: sourceSquare,
       to: targetSquare,
@@ -56,14 +55,14 @@ const MatePractice = () => {
     });
   
     if (move === null) return false;
-  
+    console.log("Movimiento realizado:", move);
+
     const userMove = `${sourceSquare}${targetSquare}`;
-    const solutionMoves: any = currentProblem?.Moves
-   
+    const solutionMoves: any = currentProblem?.solution
     const isMateInOne = solutionMoves?.length === 1 
 
     if (isMateInOne && userMove === solutionMoves[0]) {
-      setFen(chess.fen());
+      setFen(chess.fen())
       setIsExploding(true);
       setTimeout(() => {
         setIsExploding(false);
@@ -73,7 +72,7 @@ const MatePractice = () => {
     }
     
     if (userMove === solutionMoves[currentStep]) {
-      setFen(chess.fen());
+      setFen(chess.fen())
       
       if (currentStep === solutionMoves.length - 1) {
         // último movimiento de la solución, problema resuelto
@@ -85,8 +84,9 @@ const MatePractice = () => {
       } else {
         // Respuesta de la computadora
         setTimeout(() => {
-          chess.move(solutionMoves[currentStep] + 1);
-          setFen(chess.fen());
+          const computerMove = (solutionMoves[currentStep + 1]);
+          if (computerMove) chess.move(computerMove);
+          setFen(chess.fen())
           setCurrentStep(currentStep + 2); // Prepara el siguiente movimiento del usuario
         }, 500);
       }
@@ -94,22 +94,37 @@ const MatePractice = () => {
     }
   
     chess.undo();
-    setFen(chess.fen());
+    setFen(chess.fen())
     alert('Movimiento incorrecto, intenta de nuevo');
     return false;
   };
 
+  const onSquareClick = (square: string) => {
+    if (pieceSquare === null) {
+      setPieceSquare(square);
+    } else {
+      const moveSuccess = onDrop(pieceSquare, square);
+      setPieceSquare(null);
+      if (!moveSuccess) {
+        setPieceSquare(null);
+      }
+    }
+  };
+
   return (
     <div className="mate-practice">
-      <h1>Ejercicios de Jaque Mate</h1>
-      <h6>Mejora tu cálculo y visión resolviendo problemas</h6>
-      {currentProblem?.Themes.includes("mate") ? <h3>Encuentra el jaque mate</h3> : null}
+      <h1>Ejercicios</h1>
+      <h6>Mejora tu visión y cálculo resolviendo problemas</h6>
+      {currentProblem?.description ? <h3>{currentProblem?.description}</h3> : ''}
       <div id='chessboard-container'>
-        <ChessboardInterface 
+        {currentProblem && (
+          <ChessboardInterface 
           fen={fen} 
           onDrop={onDrop} 
-          boardOrientation={currentProblem?.FEN.includes('w') ? 'white' : 'black'}
+          onPieceClick={onSquareClick}
+          boardOrientation={currentProblem?.side === 'w' ? 'white' : 'black'}
           />
+        )}
       </div>
         {isExploding && <ConfettiExplosion 
         particleCount={130} 
