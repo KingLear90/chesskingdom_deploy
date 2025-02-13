@@ -7,7 +7,7 @@ function Practice() {
   return (
     <App>
         <div>
-          <Suspense fallback={<div>Cargando...</div>}>
+          <Suspense fallback={<div>Cargando problemas...</div>}>
             <MatePractice />
           </Suspense>
         </div>
