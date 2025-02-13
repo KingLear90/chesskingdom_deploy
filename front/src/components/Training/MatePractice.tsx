@@ -9,7 +9,9 @@ import { ChessProblemProps } from '../../types/interfaces';
 const MatePractice = () => {
   const [chess] = useState(new Chess());
   const [fen, setFen] = useState<string>(''); // FEN inicial del primer problema
+  const [allProblems, setAllProblems] = useState<ChessProblemProps[]>([]);
   const [currentProblem, setCurrentProblem] = useState<ChessProblemProps>();
+  const [seenProblems, setSeenProblems] = useState<string[]>([]); // Guardar los _id de los problemas ya mostrados
   const [currentStep, setCurrentStep] = useState(0);
   const [pieceSquare, setPieceSquare] = useState<string | null>(null);
   const [isGameOver, setIsGameOver] = useState(false);
@@ -17,33 +19,48 @@ const MatePractice = () => {
   const initialUrl = import.meta.env.VITE_API_URL as string
 
   //Obtener un problema aleatorio de la BD al cargar la página
-  const fetchNewProblem = async () => {
-    try {
-      const response = await fetch(`${initialUrl}problem/get-random`); // Petición a BD del back
-      const data = await response.json();
-
-      if (data) {
-          console.log("New chess problem: ", data.fen, data.description);
-          chess.load(data.fen);
-          setFen(data.fen);
-          setCurrentProblem(data);
-          setIsGameOver(false);
-          setCurrentStep(0);
-      }
-    } catch (error) {
-      console.error("Error fetching problem:", error);
-    } 
-  };
 
   useEffect(() => {
-    fetchNewProblem();
+    const fetchAllProblems = async () => {
+      try {
+        const response = await fetch(`${initialUrl}problem/get`); // Petición a BD del back
+        const data = await response.json();
+        setAllProblems(data);
+      } catch (error) {
+        console.error('Error fetching problems:', error);
+      };
+    };
+    fetchAllProblems();
   }, []);
 
+  const getNewProblem = () => {
+    // Filtrar solo los problemas que no han sido mostrados
+    const availableProblems = allProblems.filter(problem => !seenProblems.includes(problem._id));
+  
+    if (availableProblems.length === 0) {
+      setSeenProblems([]); // Reiniciar la lista cuando ya se vieron todos
+      return getNewProblem(); // Llamar de nuevo con la lista reiniciada
+  }
+
+  // Elegir un problema al azar de los disponibles
+  const newProblem = availableProblems[Math.floor(Math.random() * availableProblems.length)];
+  setSeenProblems([...seenProblems, newProblem._id]);
+  setCurrentProblem(newProblem);
+  setFen(newProblem.fen);
+  chess.load(newProblem.fen);
+  setIsGameOver(false); 
+  setCurrentStep(0);
+};
+
+  useEffect(() => {
+    if (allProblems.length > 0) getNewProblem();
+  }, [allProblems]);
+    
   const nextProblem = () => {
     // Cambiar al siguiente problema
     chess.reset()
-    fetchNewProblem();
-    };
+    getNewProblem();
+  };
     
   // Manejar el evento de mover una pieza
   const onDrop = (sourceSquare: string, targetSquare: string) => {
