@@ -16,7 +16,7 @@ const MatePractice = () => {
   const [pieceSquare, setPieceSquare] = useState<string | null>(null);
   const [isGameOver, setIsGameOver] = useState(false);
   const [isExploding, setIsExploding] = useState(false);
-  const initialUrl = import.meta.env.VITE_APICHESS_URL as string
+  const initialUrl = import.meta.env.VITE_API_URL as string
 
   //Obtener un problema aleatorio de la BD al cargar la página
 
