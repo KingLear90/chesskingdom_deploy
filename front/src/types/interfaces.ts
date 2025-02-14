@@ -78,7 +78,7 @@ export interface Champion {
 
 export interface ChessboardProps {
     fen: string;
-    onDrop: (sourceSquare: string, targetSquare: string) => boolean;
+    onDrop: (sourceSquare: string, targetSquare: string, promotion: string) => boolean;
     onPieceClick: (square: string) => void;
     boardOrientation: "white" | "black";
 }
