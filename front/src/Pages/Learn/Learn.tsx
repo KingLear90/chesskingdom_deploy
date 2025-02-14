@@ -1,7 +1,7 @@
 import App from '../../App';
 import './Learn.css';
 import Cards from '../../components/Cards/Cards';
-import BestMoveApi from '../../components/BestMoveApi/BestMoveApi';
+import BestMoveApi from '../../components/BestMove/BestMove';
 import { cardsItems } from '../../data/CardsItems';
 
 function Learn() {
