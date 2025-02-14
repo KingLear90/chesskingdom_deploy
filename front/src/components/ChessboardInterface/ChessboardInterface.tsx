@@ -16,7 +16,7 @@ const ChessboardInterface: React.FC<ChessboardProps> = ({ fen, onDrop, boardOrie
     if (pieceSquare === null) {
       setPieceSquare(square);
     } else {
-      const moveSuccess = onDrop(pieceSquare, square);
+      const moveSuccess = onDrop(pieceSquare, square, 'q');
       setPieceSquare(null);
       if (!moveSuccess) {
         setPieceSquare(null);

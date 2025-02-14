@@ -5,7 +5,6 @@ import ChessboardInterface from '../ChessboardInterface/ChessboardInterface';
 import ConfettiExplosion from 'react-confetti-explosion';
 import { ChessProblemProps } from '../../types/interfaces';
 
-
 const MatePractice = () => {
   const [chess] = useState(new Chess());
   const [fen, setFen] = useState<string>(''); // FEN inicial del primer problema
@@ -19,7 +18,6 @@ const MatePractice = () => {
   const initialUrl = import.meta.env.VITE_API_URL as string
 
   //Obtener un problema aleatorio de la BD al cargar la página
-
   useEffect(() => {
     const fetchAllProblems = async () => {
       try {
@@ -57,13 +55,12 @@ const MatePractice = () => {
   }, [allProblems]);
     
   const nextProblem = () => {
-    // Cambiar al siguiente problema
     chess.reset()
     getNewProblem();
   };
     
   // Manejar el evento de mover una pieza
-  const onDrop = (sourceSquare: string, targetSquare: string) => {
+  const onDrop = (sourceSquare: string, targetSquare: string, promotion: string) => {
     console.log("Intentando mover:", sourceSquare, "->", targetSquare);
     const move = chess.move({
       from: sourceSquare,
@@ -120,7 +117,7 @@ const MatePractice = () => {
     if (pieceSquare === null) {
       setPieceSquare(square);
     } else {
-      const moveSuccess = onDrop(pieceSquare, square);
+      const moveSuccess = onDrop(pieceSquare, square, 'q');
       setPieceSquare(null);
       if (!moveSuccess) {
         setPieceSquare(null);
