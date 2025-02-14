@@ -125,7 +125,7 @@ function BestMove() {
       </div>
 
       <div>
-        <h3>Jugada recomendada: {bestMove || "Calculating..."}</h3>
+        <h3>Stockfish recomienda: {bestMove || "Calculating..."}</h3>
       </div>
     </div>
   );
