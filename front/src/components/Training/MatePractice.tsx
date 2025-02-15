@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Chess, Square } from 'chess.js';
 import ChessboardInterface from '../ChessboardInterface/ChessboardInterface';
 import ConfettiExplosion from 'react-confetti-explosion';
+import Rating from '@mui/material/Rating';
 import { ChessProblemProps } from '../../types/interfaces';
 
 const MatePractice = () => {
@@ -133,9 +134,12 @@ const MatePractice = () => {
 
   return (
     <div className="mate-practice">
-      <h1>Ejercicios</h1>
-      <h6>Mejora tu visión y cálculo resolviendo problemas</h6>
-      {currentProblem?.description ? <h3>{currentProblem?.description}</h3> : ''}
+      <h1>Problemas de ajedrez</h1>
+      <h5 className='introMsg'>Mejora tu visión y cálculo resolviendo ejercicios.</h5>
+      <div className='problemInfo'>
+        <span className='problemDescription'>{currentProblem?.description ? <h3>{currentProblem?.description}</h3> : ''}</span>
+        <span className='difficultyRank'><h5>Dificultad: <Rating name="problemRating" readOnly={true} className='ratingStars' value={currentProblem?.difficulty ? currentProblem.difficulty : 0} precision={0.5}/></h5></span>
+      </div>
       <div id='chessboard-container'>
         {currentProblem && (
           <ChessboardInterface 
@@ -145,7 +149,7 @@ const MatePractice = () => {
           boardOrientation={currentProblem?.side === 'w' ? 'white' : 'black'}
           />
         )}
-        <span>{isAMateProblem ? <h6 className="hints">Tema: jaque mate</h6> : <h6 className="hints">Tema: ventaja decisiva</h6>}</span>
+        <span>{isAMateProblem ? <h5 className="hints">Tema: jaque mate</h5> : <h5 className="hints">Tema: ventaja decisiva</h5>}</span>
       </div>
         {isExploding && <ConfettiExplosion 
         particleCount={130} 
@@ -163,6 +167,6 @@ const MatePractice = () => {
         </button>
       </div>
   );
-}
 
+}
 export default MatePractice;

@@ -4,7 +4,33 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin: 0 auto;
+    margin: 1em auto;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.introMsg {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 1.2em;
+    margin: 0.5em auto;
+}
+
+.problemInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.problemDescription {
+    margin-top: 1em;
+}
+
+.difficultyRank {
+    margin-top: 0.1em;
+
 }
 
 #chessboard-container {
@@ -65,3 +91,8 @@
     border-radius: 8px;
     transition: 0.4s;
 }
+
+.ratingStars svg {
+    color: #ff0025;
+    stroke: #ff9944; 
+  }
