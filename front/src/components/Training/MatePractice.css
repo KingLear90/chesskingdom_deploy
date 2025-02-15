@@ -12,12 +12,43 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
+    gap: 2em;
+}
+
+@keyframes borderPulse {
+    0% { border-bottom: 2px solid rgba(223, 90, 90, 1); }
+    50% { border-bottom: 2px solid rgba(223, 90, 90, 0.2); }
+    100% { border-bottom: 2px solid rgba(223, 90, 90, 1); }
+}
+
+@keyframes textSlide {
+    0% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.hints {
+    display: flex;
+    font-weight: 400;
+    flex-direction: row;
+    color: black;
+    border-bottom: 2px solid rgb(223, 90, 90);
+    border-radius: 3px 5px;
+    padding: 0.3em;
+    line-height: 1.2em;
+    animation: 
+        borderPulse 3s infinite ease-in-out,
+        textSlide 1s ease-out;
 }
 
 .next-button {
-    margin: 20px;
+    margin-top: 1em;
+    margin-bottom: 2.5em;
     width: 12em;
     padding: 8px;
     background-color: #ff0044;
