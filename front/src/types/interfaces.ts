@@ -90,6 +90,7 @@ export interface ChessProblemProps {
   side: string,
   description: string,
   category: string,
+  difficulty: number,
 }
 
 export interface Product {
