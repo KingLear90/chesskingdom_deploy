@@ -88,7 +88,8 @@ export interface ChessProblemProps {
   fen: string,
   solution: string[],
   side: string,
-  description: string
+  description: string,
+  category: string,
 }
 
 export interface Product {
