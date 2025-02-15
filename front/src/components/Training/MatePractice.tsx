@@ -113,15 +113,6 @@ const MatePractice = () => {
   };
 
   const onSquareClick = (square: Square) => {
-    const piece = chess.get(square); // Obtener la pieza en la casilla clickeada
-    const isWhiteTurn = chess.turn() === 'w';
-    const isPieceWhite = piece?.color === 'w';
-
-  // Evita que el usuario seleccione piezas del bando incorrecto
-    if (piece && isWhiteTurn !== isPieceWhite) {
-      return; // No hacer nada si es el turno de blancas y se tocó una negra (o viceversa)
-    }
-
     if (pieceSquare === null) {
       setPieceSquare(square);
     } else {
