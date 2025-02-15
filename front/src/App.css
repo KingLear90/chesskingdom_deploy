@@ -1,5 +1,12 @@
+:root {
+  --backgroundColor: rgba(51, 48, 48);
+  --textColor: white;
+  --lightBackground: white;
+  --lightTextColor: rgba(51, 48, 48);
+}
+
 body {
-  background-color: rgb(219, 207, 205);
+  background-color: var(--backgroundColor);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,8 +17,13 @@ body {
 }
 
 body.dark-mode {
-  background-color: rgb(51, 48, 48);
-  color: white;
+  background-color: var(--backgroundColor);
+  color: var(--textColor);
+}
+
+body.light-mode {
+  --backgroundColor: var(--lightBackground);
+  --textColor: var(--lightTextColor);
 }
 
 .home-container { 

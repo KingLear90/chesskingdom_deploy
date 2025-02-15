@@ -145,7 +145,7 @@ const MatePractice = () => {
           boardOrientation={currentProblem?.side === 'w' ? 'white' : 'black'}
           />
         )}
-        <span >{isAMateProblem ? <h6 className="hints">Tema: jaque mate</h6> : <h6 className="hints">Tema: ventaja decisiva</h6>}</span>
+        <span>{isAMateProblem ? <h6 className="hints">Tema: jaque mate</h6> : <h6 className="hints">Tema: ventaja decisiva</h6>}</span>
       </div>
         {isExploding && <ConfettiExplosion 
         particleCount={130} 

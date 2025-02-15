@@ -70,18 +70,18 @@
 .startBtn, .flipBtn, .undoBtn {
     border-radius: 5px;
     font-weight: 400;
-    background: #1a1e22;
-    color: white;
+    background: whitesmoke;
+    color: var(--lightTextColor);
     padding: 0.5em 1em;
     transition: background 0.3s ease;
 }
 
 .startBtn:hover, .flipBtn:hover, .undoBtn:hover {
-    background: #76a4e8;
+    background: #9ca3ac;
 }
 
 .calculating {
-    color: rgb(42, 19, 117);
+    color: rgb(182, 180, 188);
     font-weight: 500;
 }
 

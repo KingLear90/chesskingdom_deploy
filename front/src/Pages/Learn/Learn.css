@@ -107,7 +107,7 @@
     border: none;
 }
 
-.arrowDown{
+/* .arrowDown{
     animation: bounce 1.5s infinite;
     transform: rotate(30deg)
 }
@@ -120,7 +120,7 @@
 
 .arrowDown:hover {
     cursor: pointer;
-}   
+} */
 
 @media all and (min-width: 480px) {
     #learn-info{
