@@ -1,7 +1,7 @@
 :root {
   --backgroundColor: rgba(51, 48, 48);
-  --textColor: white;
-  --lightBackground: white;
+  --textColor: rgb(255, 255, 255);
+  --lightBackground: rgb(214, 226, 248);
   --lightTextColor: rgba(51, 48, 48);
 }
 
