@@ -29,8 +29,7 @@ h1 {
 }
 
 .difficultyRank {
-    margin-top: 0.1em;
-
+    margin-bottom: 0.4em;
 }
 
 #chessboard-container {
@@ -93,6 +92,6 @@ h1 {
 }
 
 .ratingStars svg {
-    color: #ff0025;
+    color: gold;
     stroke: #ff9944; 
   }
