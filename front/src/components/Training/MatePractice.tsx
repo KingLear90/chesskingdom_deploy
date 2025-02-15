@@ -13,6 +13,7 @@ const MatePractice = () => {
   const [seenProblems, setSeenProblems] = useState<string[]>([]); // Guardar los _id de los problemas ya mostrados
   const [currentStep, setCurrentStep] = useState(0);
   const [pieceSquare, setPieceSquare] = useState<string | null>(null);
+  const [isAMateProblem, setIsAMateProblem] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const [isExploding, setIsExploding] = useState(false);
   const initialUrl = import.meta.env.VITE_API_URL as string
@@ -38,22 +39,28 @@ const MatePractice = () => {
     if (availableProblems.length === 0) {
       setSeenProblems([]); // Reiniciar la lista cuando ya se vieron todos
       return getNewProblem(); // Llamar de nuevo con la lista reiniciada
-  }
+    }
 
-  // Elegir un problema al azar de los disponibles
-  const newProblem = availableProblems[Math.floor(Math.random() * availableProblems.length)];
-  setSeenProblems([...seenProblems, newProblem._id]);
-  setCurrentProblem(newProblem);
-  setFen(newProblem.fen);
-  chess.load(newProblem.fen);
-  setIsGameOver(false); 
-  setCurrentStep(0);
-};
+    // Elegir un problema al azar de los disponibles
+    const newProblem = availableProblems[Math.floor(Math.random() * availableProblems.length)];
+    setSeenProblems([...seenProblems, newProblem._id]);
+    setCurrentProblem(newProblem);
+    setFen(newProblem.fen);
+    chess.load(newProblem.fen);
+    setIsGameOver(false); 
+    setCurrentStep(0);
+  };
 
   useEffect(() => {
     if (allProblems.length > 0) getNewProblem();
   }, [allProblems]);
-    
+  
+  useEffect(() => {
+    if (currentProblem) {
+      setIsAMateProblem(currentProblem.category.includes("Mate"));
+    }
+  }, [currentProblem]);
+  
   const nextProblem = () => {
     chess.reset()
     getNewProblem();
@@ -112,7 +119,7 @@ const MatePractice = () => {
     return false;
   };
 
-  const onSquareClick = (square: Square) => {
+  const onSquareClick = (square: string) => {
     if (pieceSquare === null) {
       setPieceSquare(square);
     } else {
@@ -138,6 +145,7 @@ const MatePractice = () => {
           boardOrientation={currentProblem?.side === 'w' ? 'white' : 'black'}
           />
         )}
+        <span >{isAMateProblem ? <h6 className="hints">Tema: jaque mate</h6> : <h6 className="hints">Tema: ventaja decisiva</h6>}</span>
       </div>
         {isExploding && <ConfettiExplosion 
         particleCount={130} 
