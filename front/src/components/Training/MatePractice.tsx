@@ -1,6 +1,6 @@
 import './MatePractice.css';
 import { useState, useEffect } from 'react';
-import { Chess } from 'chess.js';
+import { Chess, Square } from 'chess.js';
 import ChessboardInterface from '../ChessboardInterface/ChessboardInterface';
 import ConfettiExplosion from 'react-confetti-explosion';
 import { ChessProblemProps } from '../../types/interfaces';
@@ -61,7 +61,6 @@ const MatePractice = () => {
     
   // Manejar el evento de mover una pieza
   const onDrop = (sourceSquare: string, targetSquare: string, promotion: string) => {
-    console.log("Intentando mover:", sourceSquare, "->", targetSquare);
     const move = chess.move({
       from: sourceSquare,
       to: targetSquare,
@@ -113,7 +112,16 @@ const MatePractice = () => {
     return false;
   };
 
-  const onSquareClick = (square: string) => {
+  const onSquareClick = (square: Square) => {
+    const piece = chess.get(square); // Obtener la pieza en la casilla clickeada
+    const isWhiteTurn = chess.turn() === 'w';
+    const isPieceWhite = piece?.color === 'w';
+
+  // Evita que el usuario seleccione piezas del bando incorrecto
+    if (piece && isWhiteTurn !== isPieceWhite) {
+      return; // No hacer nada si es el turno de blancas y se tocó una negra (o viceversa)
+    }
+
     if (pieceSquare === null) {
       setPieceSquare(square);
     } else {
