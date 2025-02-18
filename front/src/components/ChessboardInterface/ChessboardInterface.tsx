@@ -32,6 +32,7 @@ const ChessboardInterface: React.FC<ChessboardProps> = ({ fen, onDrop, boardOrie
           onPieceDrop={onDrop}     
           onSquareClick={onSquareClick}
           boardWidth={370}  
+          arePiecesDraggable={false}
           customBoardStyle={{
               display: "flex",
               alignItems: "center",
