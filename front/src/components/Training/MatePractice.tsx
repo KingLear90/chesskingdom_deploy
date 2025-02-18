@@ -153,6 +153,8 @@ const MatePractice = () => {
     }
   };
 
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
   return (
     <div className="mate-practice">
       <h1>Problemas de ajedrez</h1>
@@ -186,7 +188,7 @@ const MatePractice = () => {
             fen={fen}
             onDrop={onDrop}
             onPieceClick={onSquareClick}
-            arePiecesDraggable={true}
+            arePiecesDraggable={!isMobile}
             snapToCursor={false}
             boardOrientation={currentProblem?.side === "w" ? "white" : "black"}
           />

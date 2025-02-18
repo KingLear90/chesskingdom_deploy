@@ -96,6 +96,7 @@ function BestMove() {
     }
   };
 
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   return (
     <div>
       <h4 className='engineFeature'>¡Analiza posiciones o partidas de inicio a fin con Stockfish!</h4>
@@ -111,7 +112,7 @@ function BestMove() {
             fen={fen} 
             onDrop={onDrop} 
             onPieceClick={onSquareClick}
-            arePiecesDraggable={true}
+            arePiecesDraggable={!isMobile}
             snapToCursor={false}
             boardOrientation={boardOrientation} />
           </div>
