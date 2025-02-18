@@ -107,7 +107,12 @@ function BestMove() {
 
         <div className="board-controls-container mt-4">
           <div id="chessboard-container">
-            <ChessboardInterface fen={fen} onDrop={onDrop} onPieceClick={onSquareClick} boardOrientation={boardOrientation} />
+            <ChessboardInterface 
+            fen={fen} 
+            onDrop={onDrop} 
+            onPieceClick={onSquareClick}
+            onDragOverSquare={() => false} 
+            boardOrientation={boardOrientation} />
           </div>
 
           <div className='boardBtns'>
