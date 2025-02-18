@@ -81,6 +81,7 @@ export interface ChessboardProps {
     onDrop: (sourceSquare: string, targetSquare: string, promotion: string) => boolean;
     onPieceClick: (square: string) => void;
     arePiecesDraggable: boolean;
+    snapToCursor: boolean;
     boardOrientation: "white" | "black";
 }
 

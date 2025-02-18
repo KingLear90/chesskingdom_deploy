@@ -111,7 +111,8 @@ function BestMove() {
             fen={fen} 
             onDrop={onDrop} 
             onPieceClick={onSquareClick}
-            arePiecesDraggable={false}
+            arePiecesDraggable={true}
+            snapToCursor={false}
             boardOrientation={boardOrientation} />
           </div>
 

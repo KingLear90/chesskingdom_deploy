@@ -186,7 +186,8 @@ const MatePractice = () => {
             fen={fen}
             onDrop={onDrop}
             onPieceClick={onSquareClick}
-            arePiecesDraggable={false}
+            arePiecesDraggable={true}
+            snapToCursor={false}
             boardOrientation={currentProblem?.side === "w" ? "white" : "black"}
           />
         )}
