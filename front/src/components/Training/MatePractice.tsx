@@ -1,6 +1,6 @@
 import "./MatePractice.css";
 import { useState, useEffect } from "react";
-import { Chess, Square } from "chess.js";
+import { Chess, Square, PieceSymbol } from "chess.js";
 import ChessboardInterface from "../ChessboardInterface/ChessboardInterface";
 import ConfettiExplosion from "react-confetti-explosion";
 import Rating from "@mui/material/Rating";
@@ -195,7 +195,11 @@ const MatePractice = () => {
       </div>
       <div>
         <span>
-          {isAMateProblem ? (<h5 className="hints">Tema: jaque mate</h5>) : (<h5 className="hints">Tema: ventaja decisiva</h5>)}
+          {isAMateProblem ? (
+            <h5 className="hints">Tema: jaque mate</h5>
+          ) : (
+            <h5 className="hints">Tema: ventaja decisiva</h5>
+          )}
         </span>
       </div>
       {isExploding && (

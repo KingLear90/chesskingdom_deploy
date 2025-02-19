@@ -1,6 +1,6 @@
 import './BestMove.css';
 import { useEffect, useState } from 'react';
-import { Chess } from 'chess.js';
+import { Chess, Square } from 'chess.js';
 import ChessboardInterface from '../ChessboardInterface/ChessboardInterface';
 
 const STOCKFISH_PATH = "/js/stockfish-17-lite-single.js";
@@ -9,7 +9,6 @@ function BestMove() {
   const [chess] = useState(new Chess());
   const [stockfish, setStockfish] = useState<Worker | null>(null);
   const [bestMove, setBestMove] = useState<string>("");
-  const [continuation, setContinuation] = useState<string>("");
   const [fen, setFen] = useState<string>(chess.fen());
   const [pieceSquare, setPieceSquare] = useState<string | null>(null);
   const [boardOrientation, setBoardOrientation] = useState<"white" | "black">("white");
@@ -114,7 +113,8 @@ function BestMove() {
             onPieceClick={onSquareClick}
             arePiecesDraggable={true}
             snapToCursor={false}
-            boardOrientation={boardOrientation} />
+            boardOrientation={boardOrientation} 
+            />
           </div>
           <div className='boardBtns'>
             <button className="startBtn" onClick={() => { chess.reset(); setFen(chess.fen()); }}>
