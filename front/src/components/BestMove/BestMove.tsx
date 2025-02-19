@@ -116,7 +116,6 @@ function BestMove() {
             snapToCursor={false}
             boardOrientation={boardOrientation} />
           </div>
-
           <div className='boardBtns'>
             <button className="startBtn" onClick={() => { chess.reset(); setFen(chess.fen()); }}>
               Posición inicial ♖♘♗

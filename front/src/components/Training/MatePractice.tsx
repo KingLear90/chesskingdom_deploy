@@ -163,11 +163,7 @@ const MatePractice = () => {
       </h5>
       <div className="problemInfo">
         <span className="problemDescription">
-          {currentProblem?.description ? (
-            <h3>{currentProblem?.description}</h3>
-          ) : (
-            ""
-          )}
+          {currentProblem?.description ? (<h3>{currentProblem?.description}</h3>) : ("")}
         </span>
         <span className="difficultyRank">
           <h5>
@@ -199,11 +195,7 @@ const MatePractice = () => {
       </div>
       <div>
         <span>
-          {isAMateProblem ? (
-            <h5 className="hints">Tema: jaque mate</h5>
-          ) : (
-            <h5 className="hints">Tema: ventaja decisiva</h5>
-          )}
+          {isAMateProblem ? (<h5 className="hints">Tema: jaque mate</h5>) : (<h5 className="hints">Tema: ventaja decisiva</h5>)}
         </span>
       </div>
       {isExploding && (

@@ -1,3 +1,5 @@
+import { Piece } from "chess.js";
+
 export const validProfiles = ['admin', 'employee', 'user'] as const
 
 export type Profile = typeof validProfiles[number]
