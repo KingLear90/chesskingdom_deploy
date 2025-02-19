@@ -118,8 +118,3 @@ export interface FormData {
   email: string;
   password: string;
 }
-
-export interface ProductAdminControlsProps {
-  onEdit: () => void;
-  onDelete: () => void;
-}
