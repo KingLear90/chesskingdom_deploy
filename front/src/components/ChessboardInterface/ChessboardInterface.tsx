@@ -24,8 +24,6 @@ const ChessboardInterface: React.FC<ChessboardProps> = ({ fen, onDrop, boardOrie
     }
   };
 
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
   return (
     <div>
       <div id="chessboard-container">
@@ -34,7 +32,7 @@ const ChessboardInterface: React.FC<ChessboardProps> = ({ fen, onDrop, boardOrie
           onPieceDrop={onDrop}     
           onSquareClick={onSquareClick}
           boardWidth={370}  
-          arePiecesDraggable={!isMobile}
+          arePiecesDraggable={true}
           snapToCursor={false}
           customBoardStyle={{
               display: "flex",

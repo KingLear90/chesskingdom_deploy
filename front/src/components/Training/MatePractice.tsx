@@ -5,6 +5,7 @@ import ChessboardInterface from "../ChessboardInterface/ChessboardInterface";
 import ConfettiExplosion from "react-confetti-explosion";
 import Rating from "@mui/material/Rating";
 import { ChessProblemProps } from "../../types/interfaces";
+import { set } from "react-hook-form";
 
 const MatePractice = () => {
   const [chess] = useState(new Chess());
@@ -15,23 +16,28 @@ const MatePractice = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [pieceSquare, setPieceSquare] = useState<string | null>(null);
   const [isAMateProblem, setIsAMateProblem] = useState(false);
-  const [pgnList, setPgnList] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const [isExploding, setIsExploding] = useState(false);
   const initialUrl = import.meta.env.VITE_API_URL as string;
 
   //Obtener un problema aleatorio de la BD al cargar la página
   useEffect(() => {
+    let isMounted = true;   // Variable de control para evitar problemas de memoria
+
     const fetchAllProblems = async () => {
       try {
         const response = await fetch(`${initialUrl}problem/get`); // Petición a BD del back
         const data = await response.json();
-        setAllProblems(data);
+        if (isMounted) {
+          setAllProblems(data);
+        }
       } catch (error) {
         console.error("Error fetching problems:", error);
       }
     };
     fetchAllProblems();
+
+    return () => { isMounted = false; }; // Limpiar el efecto cuando el componente se desmonta
   }, []);
 
   const getNewProblem = () => {
@@ -72,6 +78,11 @@ const MatePractice = () => {
 
   // Manejar el evento de mover una pieza
   const onDrop = (sourceSquare: string, targetSquare: string, promotion: string) => {
+    if (sourceSquare === targetSquare) {
+      setPieceSquare(null);
+      return false;
+    }
+
     const piece = chess.get(sourceSquare as Square);
 
     if (chess.turn() === 'w' && piece?.color === 'b') {
@@ -84,6 +95,7 @@ const MatePractice = () => {
     }
 
     if (chess.isGameOver()) {
+      setPieceSquare(null);
       return false;
     }
 
@@ -93,7 +105,9 @@ const MatePractice = () => {
       promotion: "q",
     });
 
-    if (move === null) return false;
+    if (move === null) { 
+      return false;
+    } 
 
     console.log("Movimiento realizado:", move);
 
@@ -103,12 +117,11 @@ const MatePractice = () => {
 
     if (isMateInOne && userMove === solutionMoves[0]) {
       setFen(chess.fen());
-      setPgnList(true);
       setIsExploding(true);
-      setTimeout(() => {
+      const explodingTimer = setTimeout(() => {
         setIsExploding(false);
-        nextProblem();
-      }, 1500);
+        clearTimeout(explodingTimer);
+      }, 1000);
       return true;
     }
 
@@ -118,17 +131,16 @@ const MatePractice = () => {
       if (currentStep === solutionMoves.length - 1) {
         // último movimiento de la solución, problema resuelto
         setIsExploding(true);
-        setTimeout(() => {
+        const explodingTimer = setTimeout(() => {
           setIsExploding(false);
-          nextProblem();
-        }, 1500);
+          clearTimeout(explodingTimer);
+        }, 1000);
       } else {
         // Respuesta de la computadora
         setTimeout(() => {
           const computerMove = solutionMoves[currentStep + 1];
           if (computerMove) chess.move(computerMove);
           setFen(chess.fen());
-          setPgnList(true);
           setCurrentStep(currentStep + 2); // Prepara el siguiente movimiento del usuario
         }, 500);
       }
@@ -137,6 +149,7 @@ const MatePractice = () => {
 
     chess.undo();
     setFen(chess.fen());
+    setPieceSquare(null);
     alert("Movimiento incorrecto, intenta de nuevo");
     return false;
   };
@@ -147,13 +160,8 @@ const MatePractice = () => {
     } else {
       const moveSuccess = onDrop(pieceSquare, square, "q");
       setPieceSquare(null);
-      if (!moveSuccess) {
-        setPieceSquare(null);
-      }
     }
   };
-
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   return (
     <div className="mate-practice">
@@ -164,6 +172,9 @@ const MatePractice = () => {
       <div className="problemInfo">
         <span className="problemDescription">
           {currentProblem?.description ? (<h3>{currentProblem?.description}</h3>) : ("")}
+        </span>
+        <span>
+          {isAMateProblem ? (<h5 className="hints">Tema: jaque mate</h5>) : (<h5 className="hints">Tema: ventaja decisiva</h5>)}
         </span>
         <span className="difficultyRank">
           <h5>
@@ -189,25 +200,15 @@ const MatePractice = () => {
             boardOrientation={currentProblem?.side === "w" ? "white" : "black"}
           />
         )}
-        <span> 
-          {pgnList && (<aside className="moveList">Movimientos: {chess.history().join(' ')}</aside>)}
-        </span>
       </div>
       <div>
-        <span>
-          {isAMateProblem ? (
-            <h5 className="hints">Tema: jaque mate</h5>
-          ) : (
-            <h5 className="hints">Tema: ventaja decisiva</h5>
-          )}
-        </span>
       </div>
       {isExploding && (
         <ConfettiExplosion
-          particleCount={130}
+          particleCount={170}
           particleSize={20}
           width={1100}
-          height={600}
+          height={1000}
           duration={4000}
           style={{
             display: "flex",

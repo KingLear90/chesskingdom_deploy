@@ -77,8 +77,13 @@ h1 {
 
 .hints {
     display: flex;
+    flex-direction: column;
+    width: 11em;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
     font-weight: 400;
-    flex-direction: row;
     color: --textColor;
     border-bottom: 2px solid rgb(223, 90, 90);
     border-radius: 3px 5px;
