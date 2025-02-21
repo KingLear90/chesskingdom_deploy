@@ -117,6 +117,7 @@ const MatePractice = () => {
 
     if (isMateInOne && userMove === solutionMoves[0]) {
       setFen(chess.fen());
+      setPgnList(true);
       setIsExploding(true);
       const explodingTimer = setTimeout(() => {
         setIsExploding(false);
@@ -141,6 +142,7 @@ const MatePractice = () => {
           const computerMove = solutionMoves[currentStep + 1];
           if (computerMove) chess.move(computerMove);
           setFen(chess.fen());
+          setPgnList(true);
           setCurrentStep(currentStep + 2); // Prepara el siguiente movimiento del usuario
         }, 500);
       }
