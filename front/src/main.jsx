@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { StrictMode } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -24,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/practice" element={<Practice />} />
+        <Route path="/practice/problem/:id/category/:category" element={<Practice />} />
         <Route path="/users" element={<ProtectedRoute allowedProfiles={['admin']}><GetUsers /></ProtectedRoute>} />
         <Route path="*" element={<NotFound />} />
       </Routes>

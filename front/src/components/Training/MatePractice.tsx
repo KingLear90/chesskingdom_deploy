@@ -5,7 +5,8 @@ import ChessboardInterface from "../ChessboardInterface/ChessboardInterface";
 import ConfettiExplosion from "react-confetti-explosion";
 import Rating from "@mui/material/Rating";
 import { ChessProblemProps } from "../../types/interfaces";
-import { set } from "react-hook-form";
+import { useParams, useNavigate } from "react-router-dom";
+
 
 const MatePractice = () => {
   const [chess] = useState(new Chess());
@@ -19,6 +20,9 @@ const MatePractice = () => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [isExploding, setIsExploding] = useState(false);
   const initialUrl = import.meta.env.VITE_API_URL as string;
+  const { id, category, difficulty } = useParams();
+  const navigate = useNavigate();
+
 
   //Obtener un problema aleatorio de la BD al cargar la página
   useEffect(() => {
@@ -59,6 +63,8 @@ const MatePractice = () => {
     chess.load(newProblem.fen);
     setIsGameOver(false);
     setCurrentStep(0);
+
+    navigate(`/practice/problem/${newProblem._id}/category/${newProblem.category}`);
   };
 
   useEffect(() => {
@@ -117,7 +123,6 @@ const MatePractice = () => {
 
     if (isMateInOne && userMove === solutionMoves[0]) {
       setFen(chess.fen());
-      setPgnList(true);
       setIsExploding(true);
       const explodingTimer = setTimeout(() => {
         setIsExploding(false);
@@ -142,7 +147,6 @@ const MatePractice = () => {
           const computerMove = solutionMoves[currentStep + 1];
           if (computerMove) chess.move(computerMove);
           setFen(chess.fen());
-          setPgnList(true);
           setCurrentStep(currentStep + 2); // Prepara el siguiente movimiento del usuario
         }, 500);
       }
