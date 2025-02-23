@@ -9,7 +9,7 @@ function NotFound() {
             </div>
             <div className='logo404' style={{paddingTop:'35%', position: 'relative',}}><img src="./img/7iJR.gif" width="90%" height="95%" style={{position:'absolute', top:'50%', left:'50%', transform: 'translate(-50%, -50%)'}} frame-border="0" allow-fullScreen/></div>
             {/* Se ofrece como sugerencia redirigirse a la página principal */}
-            <span className='redirectMsg'>Tal vez quieras intentar: <a href="http://localhost:5173/home" id='redirect'>ChessKingdom</a></span>
+            <span className='redirectMsg'>Tal vez quieras intentar: <a href="https://chesskingdom.vercel.app/" id='redirect'>ChessKingdom</a></span>
         </div>
     </div>
   )
