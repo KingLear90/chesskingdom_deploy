@@ -1,22 +1,8 @@
 .btn-dark, .btn-light {
+    display: flex;
     all: unset;
-    margin-right: 1em;
+    height: 1em;
+    margin-right: auto;
+    margin-left: auto;
     cursor: pointer;
-}
-
-@media screen and (min-width: 768px) {
-    .btn-dark, .btn-light {
-        display: block;
-        margin-right: 1em;
-    }
-}
-
-@media screen and (max-width: 425px) {
-    .btn-dark, .btn-light {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-right: auto;
-        margin-left:10em;
-    }
 }

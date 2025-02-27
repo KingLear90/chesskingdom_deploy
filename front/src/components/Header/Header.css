@@ -1,15 +1,23 @@
 .navbar {
     background: linear-gradient(180deg, #519bfb, #6294d1c9);  
     display: flex;
-    max-height: auto;
+    justify-content: center;
     align-items: center;
     width: 100%;
 }
 
+.navbar-nav {
+    display: flex;
+    width: 20em;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: baseline;
+}
+
 .navbar-brand {
-    font-size: 1.9rem;
+    font-size: 1.4rem;
     font-family: "Macondo Swash Caps", serif;
-    margin-left: 0.5em;
     color: black;
 }
 
@@ -33,18 +41,21 @@
 }
 
 .navbar-toggler {
-    margin-right: 0.8em;
+    font-size: 0.7em;
+    padding: 0.3em;
+    align-content: right;
+    justify-content: right;
 }
 
 .navbar-toggler-icon {
     display: inline-block;
-    width: 1.3em;
-    height: 1.3em;
+    width: 1.4em;
+    height: 1.4em;
     vertical-align: middle;
     background-image: var(--bs-navbar-toggler-icon-bg);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 100%;
+    background-size: 110%;
 }
 
 ul a {
@@ -52,11 +63,24 @@ ul a {
 }
 
 @media (min-width: 425px) {
+    .navbar-nav {
+        width: 25em;
 
+    }
 }
 
-@media (min-width: 850px) {
-    .navbar{
-        max-width: 1525px;
+@media (min-width: 768px) {
+    .navbar-nav {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1440px) {
+    .navbar {
+        background: linear-gradient(180deg, #519bfb, #6294d1c9);  
+        display: flex;
+        justify-content: right;
+        align-items: right;
+        width: 100%;
     }
 }

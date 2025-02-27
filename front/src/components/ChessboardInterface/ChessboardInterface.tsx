@@ -31,7 +31,7 @@ const ChessboardInterface: React.FC<ChessboardProps> = ({ fen, onDrop, boardOrie
           position={fen} 
           onPieceDrop={onDrop}     
           onSquareClick={onSquareClick}
-          boardWidth={370}  
+          boardWidth={300}  
           arePiecesDraggable={true}
           snapToCursor={false}
           customBoardStyle={{
@@ -42,7 +42,6 @@ const ChessboardInterface: React.FC<ChessboardProps> = ({ fen, onDrop, boardOrie
               marginRight: "auto",
               borderRadius: "4px",
               boxShadow: "0 2px 10px rgba(0, 0, 0, 0.5)",
-              width: "min(90vw, 350px)",
             }} customDarkSquareStyle={{
               backgroundColor: "#15948e"
             }} customLightSquareStyle={{

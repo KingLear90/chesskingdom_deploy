@@ -119,12 +119,4 @@ h1 {
     stroke: #ff9944; 
 }
 
-@media (min-width: 1024px) {
-    .moveList {
-        position: absolute;
-        top: 7em;
-        right: 10em;
-        max-width: 6.7em;
-        margin: 0;
-    }
-}
+

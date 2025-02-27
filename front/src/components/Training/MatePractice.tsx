@@ -7,7 +7,6 @@ import Rating from "@mui/material/Rating";
 import { ChessProblemProps } from "../../types/interfaces";
 import { useParams, useNavigate } from "react-router-dom";
 
-
 const MatePractice = () => {
   const [chess] = useState(new Chess());
   const [fen, setFen] = useState<string>(""); // FEN inicial del primer problema
