@@ -1,19 +1,18 @@
 <h1>Trabajo final UTN (MERN stack (MongoDB, Express, React, Node.js))- Diplomatura Web Full Stack, 2024 <img src="https://user-images.githubusercontent.com/74038190/216120981-b9507c36-0e04-4469-8e27-c99271b45ba5.png" width="30px"></h1>
 
 <h3>Descripción del proyecto</h3>
-[<B>ACLARACIÓN PREVIA:</B> El sitio está desplegado en Vercel, tanto el backend -ligado a la base de datos- como el frontend, y puede accederse desde: https://<b>chesskingdom.vercel.app/home</b> .<br>
+[<B>ACLARACIÓN INICIAL:</B> El sitio está desplegado en Vercel, tanto el backend -ligado a la base de datos- como el frontend, y puede accederse desde: https://<b>chesskingdom.vercel.app</b><br>
 <br>
 El siguiente trabajo está basado en una <b>API Rest</b> desarrollada como parte final de la Diplomatura Full Stack en Desarrollo Web, de la <b>Universidad Tecnológica Nacional (UTN)</b>.<br>
 
-La aplicación realiza actividades CRUD (create, read, update, delete) sobre usuarios (users), productos (products) y categorías (categories) a partir de sus respectivos endpoints.<br>
+La aplicación realiza actividades CRUD (create, read, update, delete) sobre los usuarios (users) a partir de sus respectivos endpoints.<br>
 
-El proyecto realiza de manera completa el CRUD en el backend, y por el momento realiza sólo algunas acciones desde el frontend (crear (y loguear), ver, editar y eliminar usuarios; y ver, editar y eliminar productos). <br>
-
-Demás funciones (como ver, crear, editar y eliminar categorías) se encuentran en proceso de desarrollo pero pueden llevarse a cabo vía CLI o Postman siguiendo las especificaciones detalladas más adelante en este documento.<br>
+El proyecto realiza de manera completa el CRUD en el backend, y por el momento realiza desde el frontend las acciones de ver, editar y eliminar usuarios. La acción de agregar usuarios puede de momento llevarse a cabo vía CLI o Postman siguiendo las especificaciones detalladas más adelante en este documento.<br>
 
 <h3>Tecnologías implementadas</h3>
 
-En el backend: 
+En el backend:
+
 - Node.js
 - Express
 - MongoDB
@@ -25,53 +24,73 @@ En el backend:
 - nodemon
 
 En el frontend: <br>
-(Señaladas con ** aplican especialmente a este tp, el resto a todo el sitio en general)
-- React **
-- Typescript ** 
-- React-router-dom **
-- React-hook-form **
-- Material UI ** 
-- Material UI Icons** 
-- chess.js
-- react-chessboard
-- react-confetti-explosion
+
+- React
+- React-Chessboard
+- Typescript
+- React-router-dom
+- React-hook-form
+- Material UI
+- Material UI Icons
+- Chess.js
+- React-Confetti-explosion
 
 <h3>🚀 Pasos para correr el proyecto</h3>
 
 1. Clonar el proyecto: <br>
+
+- Clonar el repositorio del backend:
+
+```bash
+  git clone https://github.com/KingLear90/chesskingdom_back.git
+```
+
+- Clonar el repositorio del frontend:
+
 ```bash
   git clone https://github.com/KingLear90/chesskingdom_deploy.git
 ```
+
 2. Instalar dependencias backend
+
 ```bash
   cd back
   npm install
 ```
+
 3. Instalar dependencias frontend
+
 ```bash
   cd front
   npm install
 ```
+
 3. Configurar variables de entorno:<br>
-   Es necesario crear un archivo .env en la raiz del proyecto (/back). Por ejemplo: 
+   Es necesario crear un archivo .env en la raiz del proyecto (/back). Por ejemplo:
+
 ```bash
   PORT = 3001
   MONGODB_URI = "mongodb://localhost:27017/[NOMBRE DE LA BASE DE DATOS]"
-  SECRET = "secret" || "457fc9106c2d19dbb10baf289263269da7289931277401b31f68e0138cbeab1dc2ae2723a1d50195d8654bc47550d0e354aaf100790856ae3de3f56079095df4" 
+  SECRET = "secret" || "457fc9106c2d19dbb10baf289263269da7289931277401b31f68e0138cbeab1dc2ae2723a1d50195d8654bc47550d0e354aaf100790856ae3de3f56079095df4"
   //[En back/src/utils hay un archivo llamado randomKeys.js que utiliza el módulo crypto, una librería que ayuda, en este caso, a generar claves random]
   //[Para ejecutar randomKeys.js, abrir el archivo en una Terminal Integrada, y ejecutarlo mediante node randomKeys.js. De lo contrario, se puede usar cualquier string como "secret" o el que se desee]
 ```
+
 4. Correr la aplicación:<br>
-  Comenzar el servidor backend:
+   Comenzar el servidor backend:
+
 ```bash
   cd back
   npm run dev
 ```
+
 Comenzar el servidor front:
+
 ```bash
   cd front
   npm run dev
 ```
+
 <h3>API Endpoints</h3>
 Autenticación: <br>
 <b>POST /api/user/login</b> - <i>Login de usuario</i><br>
@@ -80,24 +99,9 @@ Autenticación: <br>
 
 Users: <br>
 **GET /api/user/get** - _Obtener/mostrar todos los usuarios<br>
-**POST /api/user/get-by-id/:id** - _Obtener/mostrar un usuario específico a través de su ID_<br>
+**POST /api/user/get-by-id/:id** - \_Obtener/mostrar un usuario específico a través de su ID_<br>
 **PUT /api/user/update/:id** - _Actualizar usuario_<br>
 **DELETE /api/user/delete/:id** - _Borrar producto por su ID_<br>
-
-Products: <br>
-**GET /api/product/get** - _Obtener/mostrar todos los productos_<br>
-**POST /api/product/get-by-id/:id** - _Obtener/mostrar un producto específico a través de su ID_<br>
-**POST /api/product/create** - _Crear nuevo producto_<br>
-**PUT /api/product/update/:id** - _Actualizar producto_<br>
-**DELETE /api/product/delete/:id** - _Borrar producto_<br>
-
-Categories: <br>
-**GET /api/category/get** - _Obtener/mostrar todas las categorías_<br>
-**POST /api/category/get-by-id/:id** - _Obtener/mostrar una categoría específica a través de su ID_<br>
-**POST /api/category/create** - _Crear nueva categoría_<br>
-**PUT /api/category/update/:id** - _Actualizar categoría_<br>
-**DELETE /api/category/delete/:id** - _Borrar categoría_<br>
-<br>
 
 <h3>Ejemplo de solicitudes:</h3>
 - <b>CREAR USUARIO</b> (<b>POST http://localhost:3001/api/user/create</b>)<br>
@@ -165,54 +169,7 @@ Si se accede desde el front a la sección <b>Iniciar Sesión</b>, y se ingresa p
 <i>PUT http://localhost:3001/api/user/update:id</i> <br>
 <i>DELETE http://localhost:3001/api/user/delete/:id</i> <br>
 <br>
-- <b>CREAR PRODUCTOS</b> (<b>POST http://localhost:3001/api/product/create</b>)<br>
-[En "category_id", por medio de <b>.populate()</b> se permite identificar el nombre de la categoría a la que el producto corresponde]. <br>
-<br>
-{<br>
-    "productName": "Piezas de ajedrez de metal",<br>
-    "price": "80500",<br>
-    "url": "https://cdn.shopify.com/s/files/1/0287/0634/0912/products/0_715451a3-d557-424b-92cd-39130adcdec9_1800x1800.jpg?v=1667280756",<br>
-    "description": "Obra de arte tribal. Juego de ajedrez de lujo.",<br>        
-    "category_id": (string, _id de la categoría generado por Mongo)<br>
-},<br>
-{<br>
-    "productName": "Fuego en el tablero",<br>
-    "price": "21500",<br>
-    "url": "https://images.cdn2.buscalibre.com/fit-in/360x360/2e/d3/2ed3ef3ea549c5cbe7390a12ee1e18f7.jpg",<br>
-    "description": "un libro lleno de creatividad y emocionantes partidas del propio autor.",<br>
-    "category_id": (string, _id de la categoría generado por Mongo)<br>
-},<br>
-{<br>
-    "productName": "Reloj de ajedrez de madera Turnier - (madera clara)",<br>
-    "price": "125000",<br>
-    "url": "https://mychessets.com/cdn/shop/collections/image.png?v=1713137875",<br>
-    "description": "Reloj de ajedrez tradicional de madera con mecanismo de cuerda - fabricado en europa por bhb.",<br>
-    "category_id": (string, _id de la categoría generado por Mongo)<br> 
-},<br>
 
-<h5>Otras acciones con productos</h5>
-<i>GET http://localhost:3001/api/product/get</i> <br>
-<i>POST http://localhost:3001/api/product/get-by-id/:id</i> <br>
-<i>PUT http://localhost:3001/api/product/update:id</i> <br>
-<i>DELETE http://localhost:3001/api/product/delete/:id</i> <br>
-<br>
-- <b>CREAR CATEGORÍA</b> (<b>POST http://localhost:3001/api/category/create</b>)<br>
-{
-	"categoryName" : "chessboards"
-},<br>
-{
-	"categoryName" : "books"
-},<br>
-{
-	"categoryName" : "chess clocks"
-},<br>
-
-<h5>Otras acciones con categorías</h5>
-<i>GET http://localhost:3001/api/category/get</i> <br>
-<i>POST http://localhost:3001/api/category/get-by-id/:id</i> <br>
-<i>PUT http://localhost:3001/api/category/update:id</i> <br>
-<i>DELETE http://localhost:3001/api/category/delete/:id</i> <br>
-<br>
 <h3>Información adicional: Estructura del proyecto</h3>
 /back<br>
   -->/src <br>
